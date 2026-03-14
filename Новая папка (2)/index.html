@@ -1,0 +1,3364 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior CRM - O'quv Markazi</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #09090f;
+            --bg2: #111119;
+            --bg3: #16161f;
+            --card: #1a1a26;
+            --card2: #1f1f2e;
+            --border: #252535;
+            --orange: #ff6b1a;
+            --orange2: #ff8c42;
+            --green: #00d68f;
+            --red: #ff4d6d;
+            --blue: #3d9cff;
+            --purple: #9b59b6;
+            --text: #f0f0ff;
+            --text2: #9898b8;
+            --text3: #4a4a6a;
+            --sw: 220px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 2px;
+        }
+
+        /* ======= LOGIN ======= */
+        #login-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #login-wrap::before {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 107, 26, .12) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            pointer-events: none;
+        }
+
+        #login-wrap::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(61, 156, 255, .07) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            pointer-events: none;
+        }
+
+        .lgo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 32px;
+            animation: fD .6s ease;
+        }
+
+        .lgo-ic {
+            width: 76px;
+            height: 76px;
+            background: linear-gradient(135deg, #ff6b1a, #9b59b6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 14px;
+            box-shadow: 0 0 50px rgba(255, 107, 26, .35);
+        }
+
+        .lgo-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            letter-spacing: 3px;
+        }
+
+        .lgo-name span {
+            color: var(--orange);
+        }
+
+        .lgo-sub {
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: var(--text2);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .lcard {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 44px 40px;
+            width: 100%;
+            max-width: 440px;
+            animation: fU .7s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lcard h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 28px;
+        }
+
+        .fl {
+            margin-bottom: 20px;
+        }
+
+        .fl-lb {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text2);
+            margin-bottom: 8px;
+        }
+
+        .fi {
+            width: 100%;
+            background: var(--bg2);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            color: var(--text);
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .fi:focus {
+            border-color: var(--orange);
+        }
+
+        .fi::placeholder {
+            color: var(--text3);
+        }
+
+        .pw {
+            position: relative;
+        }
+
+        .pw .fi {
+            padding-right: 48px;
+        }
+
+        .eye {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text3);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .lerr {
+            background: rgba(255, 77, 109, .12);
+            border: 1px solid rgba(255, 77, 109, .3);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: var(--red);
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .btn-lg {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--orange), var(--orange2));
+            border: none;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #fff;
+            cursor: pointer;
+            transition: all .2s;
+            margin-top: 8px;
+        }
+
+        .btn-lg:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 107, 26, .4);
+        }
+
+        .l-hint {
+            margin-top: 20px;
+            padding: 14px;
+            background: var(--bg2);
+            border-radius: 10px;
+            font-size: 12px;
+            color: var(--text3);
+            line-height: 1.8;
+        }
+
+        .l-hint strong {
+            color: var(--text2);
+        }
+
+        .lfoot {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--text3);
+            letter-spacing: 2px;
+            z-index: 1;
+        }
+
+        /* ======= LAYOUT ======= */
+        #app {
+            display: none;
+        }
+
+        #app.active {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sw);
+            background: var(--bg2);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 100;
+            padding: 20px 0;
+        }
+
+        .s-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 18px 18px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 10px;
+        }
+
+        .s-logo-ic {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--orange), #9b59b6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .s-logo-t strong {
+            font-size: 15px;
+            font-weight: 800;
+            display: block;
+        }
+
+        .s-logo-t span {
+            font-size: 10px;
+            color: var(--text3);
+            letter-spacing: 1px;
+        }
+
+        .nav-sec {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text3);
+            padding: 10px 18px 6px;
+        }
+
+        .ni {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 10px 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin: 2px 8px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--text2);
+            transition: all .2s;
+            text-decoration: none;
+        }
+
+        .ni:hover {
+            background: var(--card);
+            color: var(--text);
+        }
+
+        .ni.active {
+            background: var(--orange);
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 4px 16px rgba(255, 107, 26, .3);
+        }
+
+        .ni .ico {
+            font-size: 16px;
+            width: 18px;
+            text-align: center;
+        }
+
+        .ni .badge {
+            margin-left: auto;
+            background: var(--red);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 20px;
+        }
+
+        .s-bottom {
+            margin-top: auto;
+            padding: 14px 8px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .s-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: var(--card);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .s-ua {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .s-ui {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .s-un {
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .s-ur {
+            font-size: 10px;
+            color: var(--text3);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .s-out {
+            font-size: 16px;
+            color: var(--text3);
+            cursor: pointer;
+            transition: color .2s;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .s-out:hover {
+            color: var(--red);
+        }
+
+        .content {
+            margin-left: var(--sw);
+            flex: 1;
+            padding: 36px 40px;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+            animation: fI .3s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ======= PAGE HEADERS ======= */
+        .ptag {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--orange);
+            margin-bottom: 4px;
+        }
+
+        .ptitle {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 46px;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 28px;
+        }
+
+        .ptitle span {
+            color: var(--orange);
+        }
+
+        .ptitle.teal span {
+            color: var(--green);
+        }
+
+        .ptitle.blue span {
+            color: var(--blue);
+        }
+
+        /* ======= CARDS ======= */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px;
+        }
+
+        .card2 {
+            background: var(--card2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px 20px;
+        }
+
+        /* ======= GRID ======= */
+        .g2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .g3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .g4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 14px;
+        }
+
+        /* ======= BUTTONS ======= */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .btn-or {
+            background: var(--orange);
+            color: #fff;
+        }
+
+        .btn-or:hover {
+            background: var(--orange2);
+            transform: translateY(-1px);
+        }
+
+        .btn-gr {
+            background: rgba(0, 214, 143, .15);
+            border: 1px solid rgba(0, 214, 143, .3);
+            color: var(--green);
+        }
+
+        .btn-gr:hover {
+            background: rgba(0, 214, 143, .25);
+        }
+
+        .btn-rd {
+            background: rgba(255, 77, 109, .15);
+            border: 1px solid rgba(255, 77, 109, .3);
+            color: var(--red);
+        }
+
+        .btn-rd:hover {
+            background: rgba(255, 77, 109, .25);
+        }
+
+        .btn-bl {
+            background: rgba(61, 156, 255, .15);
+            border: 1px solid rgba(61, 156, 255, .3);
+            color: var(--blue);
+        }
+
+        .btn-bl:hover {
+            background: rgba(61, 156, 255, .25);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text2);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        .btn-sm {
+            padding: 7px 14px;
+            font-size: 12px;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ======= STAT CARDS ======= */
+        .stat-card {
+            border-radius: 18px;
+            padding: 22px 24px;
+        }
+
+        .stat-card .sc-ic {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 14px;
+        }
+
+        .stat-card .sc-lb {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text2);
+            margin-bottom: 6px;
+        }
+
+        .stat-card .sc-val {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 44px;
+            line-height: 1;
+        }
+
+        .balance-grad {
+            background: linear-gradient(135deg, #c0392b, #9b59b6, #6c3483);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-grad::before {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            width: 130px;
+            height: 130px;
+            background: rgba(255, 255, 255, .07);
+            border-radius: 50%;
+        }
+
+        .bg-add {
+            position: absolute;
+            right: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, .15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background .2s;
+            border: none;
+        }
+
+        .bg-add:hover {
+            background: rgba(255, 255, 255, .25);
+        }
+
+        /* ======= TABLE ======= */
+        .tbl {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tbl th {
+            padding: 11px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text3);
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tbl td {
+            padding: 13px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, .04);
+            vertical-align: middle;
+        }
+
+        .tbl tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tbl tr:hover td {
+            background: rgba(255, 255, 255, .02);
+        }
+
+        /* ======= BADGES ======= */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            padding: 4px 11px;
+            border-radius: 20px;
+        }
+
+        .bg-green {
+            background: rgba(0, 214, 143, .15);
+            color: var(--green);
+        }
+
+        .bg-red {
+            background: rgba(255, 77, 109, .15);
+            color: var(--red);
+        }
+
+        .bg-orange {
+            background: rgba(255, 107, 26, .15);
+            color: var(--orange);
+        }
+
+        .bg-blue {
+            background: rgba(61, 156, 255, .15);
+            color: var(--blue);
+        }
+
+        .bg-gray {
+            background: rgba(152, 152, 184, .12);
+            color: var(--text2);
+        }
+
+        /* ======= FORM ======= */
+        .form-row {
+            margin-bottom: 16px;
+        }
+
+        .form-lb {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--text2);
+            margin-bottom: 8px;
+        }
+
+        .form-in {
+            width: 100%;
+            background: var(--bg2);
+            border: 1.5px solid var(--border);
+            border-radius: 11px;
+            padding: 12px 14px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .form-in:focus {
+            border-color: var(--orange);
+        }
+
+        .form-in::placeholder {
+            color: var(--text3);
+        }
+
+        select.form-in {
+            cursor: pointer;
+        }
+
+        textarea.form-in {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* ======= MODAL ======= */
+        .modal-bg {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .7);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-bg.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            width: 100%;
+            max-width: 480px;
+            animation: fU .3s ease;
+            position: relative;
+        }
+
+        .modal-h {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .modal-x {
+            background: none;
+            border: none;
+            color: var(--text3);
+            font-size: 22px;
+            cursor: pointer;
+            transition: color .2s;
+        }
+
+        .modal-x:hover {
+            color: var(--red);
+        }
+
+        /* ======= NOTIFICATIONS ======= */
+        .notif {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 14px;
+            z-index: 9999;
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all .3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notif.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notif.success {
+            background: var(--green);
+            color: #0a0a0f;
+        }
+
+        .notif.error {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .notif.info {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        /* ======= STUDENT SPECIFIC ======= */
+        .attend-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .ad-came {
+            background: rgba(0, 214, 143, .15);
+            border: 2px solid var(--green);
+        }
+
+        .ad-missed {
+            background: rgba(255, 77, 109, .15);
+            border: 2px solid var(--red);
+        }
+
+        .task-card-s {
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: all .2s;
+        }
+
+        .task-card-s:hover {
+            transform: translateY(-3px);
+            border-color: var(--orange);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .4);
+        }
+
+        .task-img {
+            height: 140px;
+            background: var(--bg2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            position: relative;
+        }
+
+        .task-ball {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, .75);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .task-body {
+            padding: 18px;
+        }
+
+        .task-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .task-dl {
+            font-size: 12px;
+            color: var(--text3);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ======= MARKET ======= */
+        .mkt-header {
+            background: linear-gradient(135deg, var(--orange), #e74c3c, #c0392b);
+            border-radius: 20px;
+            padding: 30px 34px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mkt-header::before {
+            content: '';
+            position: absolute;
+            right: -50px;
+            top: -50px;
+            width: 180px;
+            height: 180px;
+            background: rgba(255, 255, 255, .08);
+            border-radius: 50%;
+        }
+
+        .mkt-brand {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 38px;
+            letter-spacing: 3px;
+        }
+
+        .mkt-brand span {
+            opacity: .75;
+        }
+
+        .mkt-tagline {
+            font-size: 13px;
+            font-weight: 600;
+            opacity: .85;
+            margin-top: 6px;
+        }
+
+        .mkt-bal {
+            background: rgba(255, 255, 255, .15);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 14px 20px;
+            text-align: right;
+            z-index: 1;
+            position: relative;
+        }
+
+        .mkt-bal-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            opacity: .7;
+            margin-bottom: 4px;
+        }
+
+        .mkt-bal-n {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 34px;
+        }
+
+        .pcard {
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: all .2s;
+        }
+
+        .pcard:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .4);
+        }
+
+        .pcard-img {
+            height: 160px;
+            background: var(--bg3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            position: relative;
+        }
+
+        .pcard-cnt {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 77, 109, .9);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+
+        .pcard-price {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, .75);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .pcard-body {
+            padding: 15px;
+        }
+
+        .pcard-name {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .pcard-desc {
+            font-size: 12px;
+            color: var(--text3);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 9px;
+            background: var(--orange);
+            border: none;
+            border-radius: 9px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            color: #fff;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .btn-buy:hover {
+            background: var(--orange2);
+        }
+
+        .btn-buy:disabled {
+            background: var(--border);
+            color: var(--text3);
+            cursor: not-allowed;
+        }
+
+        /* ======= RATING ======= */
+        .rk-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+            transition: all .2s;
+        }
+
+        .rk-card:hover {
+            border-color: var(--border);
+        }
+
+        .rk-card.me {
+            border-color: var(--orange);
+            background: rgba(255, 107, 26, .05);
+        }
+
+        .rk-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            width: 34px;
+            text-align: center;
+            color: var(--text3);
+        }
+
+        .rk-num.g1 {
+            color: #f1c40f;
+        }
+
+        .rk-num.g2 {
+            color: #bdc3c7;
+        }
+
+        .rk-num.g3 {
+            color: #e67e22;
+        }
+
+        .rk-av {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .rk-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .rk-grp {
+            font-size: 12px;
+            color: var(--text3);
+        }
+
+        .rk-coins {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--orange);
+        }
+
+        /* ======= ADMIN SPECIFIC ======= */
+        .admin-bar {
+            background: linear-gradient(135deg, rgba(61, 156, 255, .12), rgba(155, 89, 182, .08));
+            border: 1px solid rgba(61, 156, 255, .2);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .admin-icon {
+            font-size: 28px;
+        }
+
+        .admin-bar-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .admin-bar-sub {
+            font-size: 13px;
+            color: var(--text2);
+        }
+
+        .student-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            transition: all .2s;
+        }
+
+        .student-row:hover {
+            border-color: var(--orange);
+        }
+
+        .sr-av {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .sr-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .sr-id {
+            font-size: 12px;
+            color: var(--text3);
+        }
+
+        .sr-coins {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--orange);
+            margin-left: auto;
+        }
+
+        .sr-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: 16px;
+        }
+
+        .att-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 10px;
+        }
+
+        .coin-flow-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+
+        .cf-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .cf-plus {
+            background: rgba(0, 214, 143, .12);
+        }
+
+        .cf-minus {
+            background: rgba(255, 77, 109, .12);
+        }
+
+        .cf-amount {
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .cf-plus .cf-amount {
+            color: var(--green);
+        }
+
+        .cf-minus .cf-amount {
+            color: var(--red);
+        }
+
+        .cf-desc {
+            font-size: 12px;
+            color: var(--text3);
+        }
+
+        .cf-date {
+            margin-left: auto;
+            font-size: 11px;
+            color: var(--text3);
+        }
+
+        /* ======= QUICK GRID ======= */
+        .qgrid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .qcard {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .qcard:hover {
+            transform: translateY(-3px);
+            border-color: var(--orange);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
+        }
+
+        .qcard .qic {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .qcard .qlb {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--text2);
+        }
+
+        /* ======= BARABAN WHEEL ======= */
+        .baraban-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            padding: 20px 0;
+        }
+
+        .wheel-outer {
+            position: relative;
+            width: 360px;
+            height: 360px;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            font-size: 36px;
+            filter: drop-shadow(0 4px 8px rgba(255, 107, 26, .6));
+        }
+
+        .wheel-canvas {
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 107, 26, .3), 0 0 20px rgba(0, 0, 0, .5);
+            transition: transform 0.05s;
+        }
+
+        .wheel-center-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), #e74c3c);
+            border: 4px solid var(--bg);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: .5px;
+            box-shadow: 0 4px 20px rgba(255, 107, 26, .5);
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .wheel-center-btn:hover:not(:disabled) {
+            transform: translate(-50%, -50%) scale(1.08);
+            box-shadow: 0 6px 28px rgba(255, 107, 26, .7);
+        }
+
+        .wheel-center-btn:disabled {
+            background: var(--border);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .spin-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .spin-info-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .spin-info-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text3);
+            margin-bottom: 6px;
+        }
+
+        .spin-info-val {
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .prize-pop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .8);
+            backdrop-filter: blur(8px);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+
+        .prize-pop.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .prize-box {
+            background: var(--card);
+            border: 2px solid var(--orange);
+            border-radius: 24px;
+            padding: 44px 48px;
+            text-align: center;
+            animation: popIn .4s cubic-bezier(.175, .885, .32, 1.275);
+            max-width: 380px;
+            width: 90%;
+        }
+
+        .prize-emoji {
+            font-size: 72px;
+            margin-bottom: 16px;
+        }
+
+        .prize-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .prize-amount {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 72px;
+            color: var(--orange);
+            line-height: 1;
+        }
+
+        .prize-sub {
+            font-size: 14px;
+            color: var(--text2);
+            margin: 10px 0 24px;
+        }
+
+        .baraban-history {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(.5);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1
+            }
+
+            100% {
+                transform: translateY(-200px) rotate(720deg);
+                opacity: 0
+            }
+        }
+
+        .confetti-piece {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            animation: confetti 1.5s ease-out forwards;
+            pointer-events: none;
+            z-index: 9999;
+        
+
+        font-size:11px;
+        color:var(--text3);
+        letter-spacing:2px;
+        margin-top:48px;
+        padding-top:24px;
+        border-top:1px solid var(--border);
+        }
+
+        /* ======= DIVIDER ======= */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 20px 0;
+        }
+
+        /* ======= ANIMATIONS ======= */
+        @keyframes fD {
+            from {
+                opacity: 0;
+                transform: translateY(-20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes fU {
+            from {
+                opacity: 0;
+                transform: translateY(20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes fI {
+            from {
+                opacity: 0;
+                transform: translateY(8px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1)
+            }
+
+            50% {
+                transform: scale(1.04)
+            }
+        }
+
+        .pulse {
+            animation: pulse 2.5s infinite;
+        }
+
+        /* ======= PROFILE ======= */
+        .profile-big {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 44px 32px;
+            text-align: center;
+            max-width: 520px;
+            margin: 0 auto 20px;
+        }
+
+        .pav-big {
+            width: 100px;
+            height: 100px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            font-weight: 900;
+            margin: 0 auto 16px;
+            position: relative;
+        }
+
+        .pav-online {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 16px;
+            height: 16px;
+            background: var(--green);
+            border-radius: 50%;
+            border: 3px solid var(--card);
+        }
+
+        .pname-big {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .pid-badge {
+            display: inline-block;
+            background: rgba(255, 107, 26, .1);
+            border: 1px solid rgba(255, 107, 26, .2);
+            color: var(--text2);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 5px 16px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .pfield {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 10px;
+        }
+
+        .pf-ic {
+            width: 38px;
+            height: 38px;
+            background: var(--bg2);
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .pf-lb {
+            font-size: 11px;
+            color: var(--text3);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .pf-val {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* welcome */
+        .wb {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .welcome-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 107, 26, .15);
+            border: 1px solid rgba(255, 107, 26, .3);
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--orange);
+            margin-bottom: 8px;
+        }
+
+        .welcome-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            letter-spacing: 2px;
+        }
+
+        .welcome-name span {
+            color: var(--orange);
+        }
+
+        .wbav {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--card2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        .wbav-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--green);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            border: 2px solid var(--bg2);
+        }
+
+        /* info cards */
+        .ic-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .icard {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: border-color .2s;
+        }
+
+        .icard:hover {
+            border-color: var(--orange);
+        }
+
+        .icard-ico {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255, 107, 26, .1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .icard-lb {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--text2);
+            margin-bottom: 3px;
+        }
+
+        .icard-val {
+            font-size: 19px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ======= LOGIN ======= -->
+    <div id="login-wrap">
+        <div class="lgo">
+            <div class="lgo-ic">IF</div>
+            <div class="lgo-name">Senior <span>CRM</span></div>
+            <div class="lgo-sub">EDUCATION MANAGEMENT SYSTEM</div>
+        </div>
+        <div class="lcard">
+            <h2>Tizimga kirish</h2>
+            <div class="fl">
+                <div class="fl-lb">FOYDALANUVCHI NOMI</div>
+                <input type="text" class="fi" id="l-user" placeholder="Username">
+            </div>
+            <div class="fl">
+                <div class="fl-lb">PAROL</div>
+                <div class="pw">
+                    <input type="password" class="fi" id="l-pass" placeholder="••••••••">
+                    <button class="eye" onclick="toggleEye()">👁</button>
+                </div>
+            </div>
+            <div class="lerr" id="l-err">❌ Username yoki parol noto'g'ri!</div>
+            <button class="btn-lg" onclick="doLogin()">KIRISH TIZIMIGA</button>
+            <div class="l-hint">
+                <strong>Demo login:</strong><br>
+                admin / 123 → Admin panel<br>
+                asadbek / 123 → O'quvchi<br>
+                firdavs / 123 → O'quvchi<br>
+                muhammadziyo / 123 → O'quvchi
+            </div>
+        </div>
+        <div class="lfoot">RESERVED • SENIOR CRM • 2026</div>
+    </div>
+
+    <!-- ======= MAIN APP ======= -->
+    <div id="app">
+        <aside class="sidebar" id="sidebar"></aside>
+        <main class="content" id="main-content"></main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-bg" id="modal-bg">
+        <div class="modal" id="modal-box">
+            <div class="modal-h">
+                <div class="modal-title" id="modal-title"></div>
+                <button class="modal-x" onclick="closeModal()">✕</button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notif" id="notif"></div>
+
+    <script>
+        // ============================================================
+        //  DATA STORE
+        // ============================================================
+        const STORE_KEY = 'infast_crm_v5';
+
+        function defaultData() {
+            return {
+                students: {
+                    asadbek: {
+                        name: 'Asadbek Toshmatov', id: 'asadbek', password: '123', role: 'student',
+                        coins: 420, phone: '+998901234567', course: 'Junior Frontend', group: '1-GROUP',
+                        avatar: '👨‍💻', color: 'linear-gradient(135deg,#f1c40f,#e67e22)',
+                        monthlyFee: 150000, feeStatus: 'tolangan'
+                    },
+                    firdavs: {
+                        name: 'Firdavs Karimov', id: 'firdavs', password: '123', role: 'student',
+                        coins: 280, phone: '+998907654321', course: 'Junior Frontend', group: '1-GROUP',
+                        avatar: '👨‍🔬', color: 'linear-gradient(135deg,#3d9cff,#2980b9)',
+                        monthlyFee: 150000, feeStatus: 'kutilmoqda'
+                    },
+                    muhammadziyo: {
+                        name: 'Muhammadziyo Nazarov', id: 'muhammadziyo', password: '123', role: 'student',
+                        coins: 650, phone: '+998931112233', course: 'Junior Frontend', group: '1-GROUP',
+                        avatar: '🧑‍💻', color: 'linear-gradient(135deg,#00d68f,#16a085)',
+                        monthlyFee: 150000, feeStatus: 'tolangan'
+                    }
+                },
+                admin: { name: 'Admin', id: 'admin', password: '123', role: 'admin', avatar: '⚙️', color: 'linear-gradient(135deg,#ff6b1a,#9b59b6)' },
+                attendance: {
+                    asadbek: [
+                        { date: '2026-03-13', day: 'JUM', status: 'kelgan' },
+                        { date: '2026-03-11', day: 'COR', status: 'kelgan' },
+                        { date: '2026-03-09', day: 'DUS', status: 'kelgan' },
+                        { date: '2026-03-06', day: 'JUM', status: 'kelgan' },
+                        { date: '2026-03-04', day: 'COR', status: 'kelgan' },
+                        { date: '2026-03-02', day: 'DUS', status: 'kelgan' },
+                    ],
+                    firdavs: [
+                        { date: '2026-03-13', day: 'JUM', status: 'kelgan' },
+                        { date: '2026-03-11', day: 'COR', status: 'kelmagan' },
+                        { date: '2026-03-09', day: 'DUS', status: 'kelgan' },
+                        { date: '2026-03-06', day: 'JUM', status: 'kelgan' },
+                        { date: '2026-03-04', day: 'COR', status: 'kelmagan' },
+                        { date: '2026-03-02', day: 'DUS', status: 'kelgan' },
+                    ],
+                    muhammadziyo: [
+                        { date: '2026-03-13', day: 'JUM', status: 'kelgan' },
+                        { date: '2026-03-11', day: 'COR', status: 'kelgan' },
+                        { date: '2026-03-09', day: 'DUS', status: 'kelgan' },
+                        { date: '2026-03-06', day: 'JUM', status: 'kelgan' },
+                        { date: '2026-03-04', day: 'COR', status: 'kelgan' },
+                        { date: '2026-03-02', day: 'DUS', status: 'kelgan' },
+                    ]
+                },
+                tasks: [
+                    {
+                        id: 1, title: '1-Daraja Yakuni: Basic HTML & CSS', desc: 'HTML5 va CSS3 yordamida to\'liq responsive sahifa yarating.', points: 100, deadline: '2026-03-20', emoji: '🖥️',
+                        submissions: { asadbek: null, firdavs: 'pending', muhammadziyo: 'approved' }
+                    },
+                    {
+                        id: 2, title: 'JavaScript DOM Loyiha', desc: 'Vanilla JS bilan interaktiv todo-list ilovasi yarating.', points: 120, deadline: '2026-03-27', emoji: '⚡',
+                        submissions: { asadbek: null, firdavs: null, muhammadziyo: 'pending' }
+                    },
+                    {
+                        id: 3, title: 'CSS Animatsiyalar', desc: 'CSS transition va keyframe animatsiyalar bilan sahifa boyiting.', points: 80, deadline: '2026-03-18', emoji: '🎨',
+                        submissions: { asadbek: 'approved', firdavs: null, muhammadziyo: 'approved' }
+                    }
+                ],
+                payments: {
+                    asadbek: [
+                        { id: 1, amount: 150000, date: '2026-03-15', method: 'Naqd', status: 'tasdiqlangan' },
+                        { id: 2, amount: 150000, date: '2026-02-15', method: 'Karta', status: 'tasdiqlangan' }
+                    ],
+                    firdavs: [
+                        { id: 1, amount: 150000, date: '2026-02-15', method: 'Naqd', status: 'tasdiqlangan' }
+                    ],
+                    muhammadziyo: [
+                        { id: 1, amount: 150000, date: '2026-03-15', method: 'Karta', status: 'tasdiqlangan' },
+                        { id: 2, amount: 150000, date: '2026-02-15', method: 'Naqd', status: 'tasdiqlangan' }
+                    ]
+                },
+                coinHistory: {
+                    asadbek: [
+                        { type: '+', amount: 10, desc: 'Darsga keldi (2026-03-13)', date: '13 Mar' },
+                        { type: '+', amount: 100, desc: 'CSS Animatsiyalar vazifasi tasdiqlandi', date: '10 Mar' },
+                        { type: '+', amount: 10, desc: 'Darsga keldi (2026-03-11)', date: '11 Mar' },
+                        { type: '-', amount: 20, desc: 'Market: Sticker to\'plami sotib olindi', date: '5 Mar' },
+                    ],
+                    firdavs: [
+                        { type: '+', amount: 10, desc: 'Darsga keldi (2026-03-13)', date: '13 Mar' },
+                        { type: '-', amount: 20, desc: 'Darsga kelmadi (2026-03-11)', date: '11 Mar' },
+                        { type: '+', amount: 10, desc: 'Darsga keldi (2026-03-09)', date: '9 Mar' },
+                    ],
+                    muhammadziyo: [
+                        { type: '+', amount: 120, desc: 'JavaScript DOM vazifasi tasdiqlandi', date: '12 Mar' },
+                        { type: '+', amount: 100, desc: 'CSS Animatsiyalar vazifasi tasdiqlandi', date: '10 Mar' },
+                        { type: '+', amount: 10, desc: 'Darsga keldi (2026-03-13)', date: '13 Mar' },
+                        { type: '+', amount: 100, desc: '1-Daraja vazifasi tasdiqlandi', date: '8 Mar' },
+                    ]
+                },
+                market: [
+                    { id: 1, name: "AirPods Pro", emoji: '🎧', price: 4500, count: 3, desc: 'Apple AirPods Pro — toza ovoz, noise cancellation, zamonaviy dizayn' },
+                    { id: 2, name: "Mexanik Klaviatura", emoji: '⌨️', price: 7500, count: 2, desc: 'RGB backlit mexanik klaviatura — tez va aniq terishga mo\'ljallangan' },
+                    { id: 3, name: "Gaming Sichqoncha", emoji: '🖱️', price: 4200, count: 3, desc: 'Yorqin RGB nurlar, tezkor DPI, USB — o\'yin va ish uchun ideal' },
+                    { id: 4, name: "Senior Futbolka", emoji: '👕', price: 800, count: 10, desc: 'Maxsus Senior Academy brendli futbolka — sifatli material' },
+                ]
+            };
+        }
+
+        let DATA = {};
+        let currentUser = null;
+        let currentPage = '';
+
+        function loadData() {
+            const raw = localStorage.getItem(STORE_KEY);
+            if (raw) { try { DATA = JSON.parse(raw); } catch (e) { DATA = defaultData(); } }
+            else { DATA = defaultData(); saveData(); }
+        }
+        function saveData() { localStorage.setItem(STORE_KEY, JSON.stringify(DATA)); }
+        loadData();
+
+        // ============================================================
+        //  AUTH
+        // ============================================================
+        function toggleEye() {
+            const p = document.getElementById('l-pass');
+            p.type = p.type === 'password' ? 'text' : 'password';
+        }
+
+        function doLogin() {
+            const u = document.getElementById('l-user').value.trim().toLowerCase();
+            const p = document.getElementById('l-pass').value.trim();
+            const err = document.getElementById('l-err');
+            err.style.display = 'none';
+
+            if (u === 'admin' && p === DATA.admin.password) {
+                currentUser = { ...DATA.admin };
+            } else if (DATA.students[u] && DATA.students[u].password === p) {
+                currentUser = { ...DATA.students[u] };
+            } else {
+                err.style.display = 'block';
+                return;
+            }
+            document.getElementById('login-wrap').style.display = 'none';
+            document.getElementById('app').classList.add('active');
+            buildLayout();
+            notify('✅ Xush kelibsiz, ' + currentUser.name + '!', 'success');
+        }
+
+        document.getElementById('l-pass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+        function doLogout() {
+            currentUser = null;
+            document.getElementById('app').classList.remove('active');
+            document.getElementById('login-wrap').style.display = 'flex';
+            document.getElementById('l-user').value = '';
+            document.getElementById('l-pass').value = '';
+        }
+
+        // ============================================================
+        //  LAYOUT BUILDER
+        // ============================================================
+        function buildLayout() {
+            if (currentUser.role === 'admin') buildAdminLayout();
+            else buildStudentLayout();
+        }
+
+        function buildAdminLayout() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.innerHTML = `
+    <div class="s-logo">
+      <div class="s-logo-ic">⚙️</div>
+      <div class="s-logo-t"><strong>Senior</strong><span>ADMIN PANEL</span></div>
+    </div>
+    <div class="nav-sec">BOSHQARUV</div>
+    <div class="ni active" onclick="navTo('a-dashboard',this)"><span class="ico">📊</span> Dashboard</div>
+    <div class="ni" onclick="navTo('a-students',this)"><span class="ico">👥</span> O'quvchilar <span class="badge" id="nb-st">${Object.keys(DATA.students).length}</span></div>
+    <div class="ni" onclick="navTo('a-attendance',this)"><span class="ico">📅</span> Davomat</div>
+    <div class="ni" onclick="navTo('a-tasks',this)"><span class="ico">✅</span> Vazifalar</div>
+    <div class="nav-sec">MOLIYA</div>
+    <div class="ni" onclick="navTo('a-payments',this)"><span class="ico">💳</span> To'lovlar</div>
+    <div class="nav-sec">TIZIM</div>
+    <div class="ni" onclick="navTo('a-coins',this)"><span class="ico">🪙</span> Coin Tizimi</div>
+    <div class="s-bottom">
+      <div class="s-user">
+        <div class="s-ua" style="background:linear-gradient(135deg,#ff6b1a,#9b59b6);">⚙️</div>
+        <div class="s-ui"><div class="s-un">Admin</div><div class="s-ur">SUPER ADMIN</div></div>
+        <button class="s-out" onclick="doLogout()" title="Chiqish">⎋</button>
+      </div>
+    </div>`;
+
+            const pages = ['a-dashboard', 'a-students', 'a-attendance', 'a-tasks', 'a-payments', 'a-coins'];
+            const content = document.getElementById('main-content');
+            content.innerHTML = pages.map(id => `<div class="page" id="page-${id}"></div>`).join('');
+
+            renderAdminDash();
+            renderAdminStudents();
+            renderAdminAttendance();
+            renderAdminTasks();
+            renderAdminPayments();
+            renderAdminCoins();
+            navTo('a-dashboard', null);
+        }
+
+        function buildStudentLayout() {
+            const st = DATA.students[currentUser.id];
+            const sidebar = document.getElementById('sidebar');
+            sidebar.innerHTML = `
+    <div class="s-logo">
+      <div class="s-logo-ic">IF</div>
+      <div class="s-logo-t"><strong>Senior</strong><span>ACADEMY</span></div>
+    </div>
+    <div class="ni active" onclick="navTo('s-dash',this)"><span class="ico">🏠</span> Asosiy sahifa</div>
+    <div class="ni" onclick="navTo('s-course',this)"><span class="ico">📚</span> Mening kurslarim</div>
+    <div class="ni" onclick="navTo('s-attend',this)"><span class="ico">📅</span> Davomat tarixi</div>
+    <div class="ni" onclick="navTo('s-pay',this)"><span class="ico">💳</span> To'lovlar tarixi</div>
+    <div class="ni" onclick="navTo('s-tasks',this)"><span class="ico">✅</span> Vazifalar</div>
+    <div class="ni" onclick="navTo('s-market',this)"><span class="ico">🛍️</span> Market</div>
+    <div class="ni" onclick="navTo('s-baraban',this)"><span class="ico">🎰</span> Baraban <span class="badge" style="background:var(--orange);">NEW</span></div>
+    <div class="ni" onclick="navTo('s-rating',this)"><span class="ico">📈</span> Reyting</div>
+    <div class="ni" onclick="navTo('s-profile',this)"><span class="ico">👤</span> Mening profilim</div>
+    <div class="s-bottom">
+      <div class="s-user">
+        <div class="s-ua" style="background:${st.color};">${st.avatar}</div>
+        <div class="s-ui"><div class="s-un">${st.name.split(' ')[0]}</div><div class="s-ur">STUDENT</div></div>
+        <button class="s-out" onclick="doLogout()" title="Chiqish">⎋</button>
+      </div>
+    </div>`;
+
+            const pages = ['s-dash', 's-course', 's-attend', 's-pay', 's-tasks', 's-market', 's-baraban', 's-rating', 's-profile'];
+            const content = document.getElementById('main-content');
+            content.innerHTML = pages.map(id => `<div class="page" id="page-${id}"></div>`).join('');
+
+            renderStudentDash();
+            renderStudentCourse();
+            renderStudentAttend();
+            renderStudentPay();
+            renderStudentTasks();
+            renderStudentMarket();
+            renderStudentBaraban();
+            renderStudentRating();
+            renderStudentProfile();
+            navTo('s-dash', null);
+        }
+
+        function navTo(id, el) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const pg = document.getElementById('page-' + id);
+            if (pg) pg.classList.add('active');
+            document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
+            if (el) el.classList.add('active');
+            currentPage = id;
+        }
+
+        // ============================================================
+        //  ADMIN PAGES
+        // ============================================================
+        function renderAdminDash() {
+            const sts = Object.values(DATA.students);
+            const totalCoins = sts.reduce((s, x) => s + x.coins, 0);
+            const totalAtt = Object.values(DATA.attendance).flat().filter(a => a.status === 'kelgan').length;
+            const totalMissed = Object.values(DATA.attendance).flat().filter(a => a.status === 'kelmagan').length;
+            const pendingTasks = DATA.tasks.reduce((s, t) => s + Object.values(t.submissions).filter(v => v === 'pending').length, 0);
+
+            document.getElementById('page-a-dashboard').innerHTML = `
+    <div class="admin-bar">
+      <div class="admin-icon">⚙️</div>
+      <div><div class="admin-bar-title">Admin Boshqaruv Paneli</div><div class="admin-bar-sub">Barcha o'quvchilarni real vaqtda nazorat qiling</div></div>
+    </div>
+    <div class="g4" style="margin-bottom:20px;">
+      <div class="stat-card" style="background:var(--card);border:1px solid var(--border);">
+        <div class="sc-ic" style="background:rgba(61,156,255,.12);">👥</div>
+        <div class="sc-lb">O'QUVCHILAR</div>
+        <div class="sc-val" style="color:var(--blue);">${sts.length}</div>
+      </div>
+      <div class="stat-card" style="background:var(--card);border:1px solid var(--border);">
+        <div class="sc-ic" style="background:rgba(0,214,143,.12);">✅</div>
+        <div class="sc-lb">KELGAN DARSLAR</div>
+        <div class="sc-val" style="color:var(--green);">${totalAtt}</div>
+      </div>
+      <div class="stat-card" style="background:var(--card);border:1px solid var(--border);">
+        <div class="sc-ic" style="background:rgba(255,77,109,.12);">❌</div>
+        <div class="sc-lb">QOLDIRILGAN</div>
+        <div class="sc-val" style="color:var(--red);">${totalMissed}</div>
+      </div>
+      <div class="stat-card" style="background:var(--card);border:1px solid var(--border);">
+        <div class="sc-ic" style="background:rgba(255,107,26,.12);">📋</div>
+        <div class="sc-lb">KUTILAYOTGAN</div>
+        <div class="sc-val" style="color:var(--orange);">${pendingTasks}</div>
+      </div>
+    </div>
+    <div class="g2">
+      <div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);margin-bottom:14px;">O'QUVCHILAR HOLATI</div>
+        ${sts.map(st => `
+          <div class="student-row">
+            <div class="sr-av" style="background:${st.color};">${st.avatar}</div>
+            <div><div class="sr-name">${st.name}</div><div class="sr-id">${st.group} • ${st.course}</div></div>
+            <div class="sr-coins">🪙 ${st.coins}</div>
+            <div class="sr-actions">
+              <button class="btn btn-gr btn-sm" onclick="quickAttend('${st.id}', 'kelgan')">+ Keldi</button>
+              <button class="btn btn-rd btn-sm" onclick="quickAttend('${st.id}', 'kelmagan')">- Kelmadi</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);margin-bottom:14px;">VAZIFA KUTILMOQDA</div>
+        ${DATA.tasks.map(t => {
+                const pends = Object.entries(t.submissions).filter(([k, v]) => v === 'pending');
+                if (!pends.length) return '';
+                return pends.map(([sid]) => `
+            <div class="card2" style="margin-bottom:10px;display:flex;align-items:center;gap:12px;">
+              <span style="font-size:24px;">${t.emoji}</span>
+              <div style="flex:1;">
+                <div style="font-size:13px;font-weight:700;">${t.title}</div>
+                <div style="font-size:12px;color:var(--text3);">${DATA.students[sid].name}</div>
+              </div>
+              <button class="btn btn-gr btn-sm" onclick="approveTask(${t.id},'${sid}')">✅ Tasdiqlash</button>
+              <button class="btn btn-rd btn-sm" onclick="rejectTask(${t.id},'${sid}')">❌ Rad etish</button>
+            </div>
+          `).join('');
+            }).join('')}
+        ${DATA.tasks.every(t => Object.values(t.submissions).every(v => v !== 'pending')) ? '<div style="color:var(--text3);font-size:14px;text-align:center;padding:20px;">✅ Barcha vazifalar ko\'rib chiqildi</div>' : ''}
+        <div class="divider"></div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);margin-bottom:14px;">TEZKOR AMALLAR</div>
+        <button class="btn btn-or btn-full" style="margin-bottom:10px;" onclick="navTo('a-attendance',document.querySelector('[onclick*=a-attendance]'))">📅 Bugungi davomat belgilash</button>
+        <button class="btn btn-bl btn-full" style="margin-bottom:10px;" onclick="openCreateTask()">➕ Yangi vazifa yaratish</button>
+        <button class="btn btn-ghost btn-full" onclick="navTo('a-payments',document.querySelector('[onclick*=a-payments]'))">💳 To'lovlarni boshqarish</button>
+      </div>
+    </div>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED CREATED BY: MUHAMMADAZIZ YAKUBOV</div>`;
+        }
+
+        function quickAttend(sid, status) {
+            const today = new Date().toISOString().split('T')[0];
+            const days = ['YAK', 'DUS', 'SEV', 'COR', 'PAY', 'JUM', 'SHA'];
+            const day = days[new Date().getDay()];
+            if (!DATA.attendance[sid]) DATA.attendance[sid] = [];
+            const exists = DATA.attendance[sid].find(a => a.date === today);
+            if (exists) { notify('⚠️ Bugun allaqachon belgilangan!', 'error'); return; }
+            DATA.attendance[sid].unshift({ date: today, day, status });
+            if (status === 'kelgan') {
+                DATA.students[sid].coins += 10;
+                DATA.coinHistory[sid] = DATA.coinHistory[sid] || [];
+                DATA.coinHistory[sid].unshift({ type: '+', amount: 10, desc: `Darsga keldi (${today})`, date: today.slice(5) });
+                notify(`✅ ${DATA.students[sid].name} - keldi! +10 coin`, 'success');
+            } else {
+                DATA.students[sid].coins = Math.max(0, DATA.students[sid].coins - 20);
+                DATA.coinHistory[sid] = DATA.coinHistory[sid] || [];
+                DATA.coinHistory[sid].unshift({ type: '-', amount: 20, desc: `Darsga kelmadi (${today})`, date: today.slice(5) });
+                notify(`❌ ${DATA.students[sid].name} - kelmadi! -20 coin`, 'error');
+            }
+            saveData();
+            renderAdminDash();
+            renderAdminStudents();
+        }
+
+        function approveTask(tid, sid) {
+            const task = DATA.tasks.find(t => t.id === tid);
+            task.submissions[sid] = 'approved';
+            DATA.students[sid].coins += task.points;
+            DATA.coinHistory[sid] = DATA.coinHistory[sid] || [];
+            DATA.coinHistory[sid].unshift({ type: '+', amount: task.points, desc: `"${task.title}" vazifasi tasdiqlandi`, date: new Date().toISOString().slice(5, 10) });
+            saveData();
+            notify(`✅ Tasdiqlandi! ${DATA.students[sid].name} +${task.points} coin`, 'success');
+            renderAdminDash();
+            renderAdminTasks();
+        }
+
+        function rejectTask(tid, sid) {
+            DATA.tasks.find(t => t.id === tid).submissions[sid] = null;
+            saveData();
+            notify(`❌ Vazifa rad etildi`, 'error');
+            renderAdminDash();
+            renderAdminTasks();
+        }
+
+        function renderAdminStudents() {
+            const sts = Object.values(DATA.students);
+            document.getElementById('page-a-students').innerHTML = `
+    <div class="ptag">BOSHQARUV</div>
+    <div class="ptitle">O'QUVCHILAR <span>RO'YXATI</span></div>
+    <div style="display:flex;gap:10px;margin-bottom:24px;">
+      <button class="btn btn-or" onclick="openAddStudent()">➕ Yangi o'quvchi</button>
+    </div>
+    <table class="tbl" style="background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+      <thead><tr><th>O'QUVCHI</th><th>GURUH</th><th>KURS</th><th>COIN</th><th>DAVOMAT</th><th>TO'LOV</th><th>AMALLAR</th></tr></thead>
+      <tbody>
+        ${sts.map(st => {
+                const att = DATA.attendance[st.id] || [];
+                const came = att.filter(a => a.status === 'kelgan').length;
+                const total = att.length;
+                const pct = total ? Math.round(came / total * 100) : 0;
+                return `<tr>
+            <td><div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:${st.color};font-size:16px;">${st.avatar}</div>
+              <div><div style="font-weight:700;">${st.name}</div><div style="font-size:11px;color:var(--text3);">@${st.id}</div></div>
+            </div></td>
+            <td><span class="badge bg-blue">${st.group}</span></td>
+            <td>${st.course}</td>
+            <td><span style="font-weight:800;color:var(--orange);">🪙 ${st.coins}</span></td>
+            <td><span class="badge ${pct >= 80 ? 'bg-green' : pct >= 50 ? 'bg-orange' : 'bg-red'}">${pct}%</span></td>
+            <td><span class="badge ${st.feeStatus === 'tolangan' ? 'bg-green' : 'bg-red'}">${st.feeStatus}</span></td>
+            <td><div style="display:flex;gap:6px;">
+              <button class="btn btn-gr btn-sm" onclick="quickAttend('${st.id}','kelgan')">✅</button>
+              <button class="btn btn-rd btn-sm" onclick="quickAttend('${st.id}','kelmagan')">❌</button>
+              <button class="btn btn-bl btn-sm" onclick="openAddCoins('${st.id}')">🪙+</button>
+              <button class="btn btn-ghost btn-sm" onclick="openPayModal('${st.id}')">💳</button>
+            </div></td>
+          </tr>`;
+            }).join('')}
+      </tbody>
+    </table>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function renderAdminAttendance() {
+            const sts = Object.values(DATA.students);
+            document.getElementById('page-a-attendance').innerHTML = `
+    <div class="ptag">NAZORAT</div>
+    <div class="ptitle">DARS <span>DAVOMATI</span></div>
+    <div class="card" style="margin-bottom:20px;">
+      <div style="font-size:14px;font-weight:700;margin-bottom:16px;">📅 Bugungi darsni belgilash <span style="font-size:12px;color:var(--text3);font-weight:400;">— Har bir o'quvchi uchun holat tanlang</span></div>
+      ${sts.map(st => `
+        <div class="att-row">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:${st.color};font-size:16px;">${st.avatar}</div>
+            <div><div style="font-weight:700;">${st.name}</div><div style="font-size:12px;color:var(--text3);">${st.group}</div></div>
+          </div>
+          <span style="font-size:13px;color:var(--text3);">🪙 ${st.coins}</span>
+          <button class="btn btn-gr btn-sm" onclick="quickAttend('${st.id}','kelgan');renderAdminAttendance()">✅ Keldi (+10🪙)</button>
+          <button class="btn btn-rd btn-sm" onclick="quickAttend('${st.id}','kelmagan');renderAdminAttendance()">❌ Kelmadi (-20🪙)</button>
+        </div>
+      `).join('')}
+    </div>
+    <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);margin-bottom:14px;">DAVOMAT TARIXI</div>
+    ${sts.map(st => {
+                const att = (DATA.attendance[st.id] || []).slice(0, 6);
+                return `
+        <div class="card" style="margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:${st.color};font-size:15px;">${st.avatar}</div>
+            <div style="font-weight:700;">${st.name}</div>
+            <span class="badge bg-blue" style="margin-left:auto;">${att.filter(a => a.status === 'kelgan').length}/${att.length} kelgan</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            ${att.map(a => `
+              <div style="background:var(--bg2);border-radius:12px;padding:10px 14px;text-align:center;min-width:80px;">
+                <div style="font-size:13px;font-weight:700;">${a.date.slice(5)}</div>
+                <div style="font-size:10px;color:var(--text3);">${a.day}</div>
+                <div style="margin-top:6px;"><span class="badge ${a.status === 'kelgan' ? 'bg-green' : 'bg-red'}" style="font-size:10px;">${a.status}</span></div>
+              </div>
+            `).join('')}
+          </div>
+        </div>`;
+            }).join('')}
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function renderAdminTasks() {
+            document.getElementById('page-a-tasks').innerHTML = `
+    <div class="ptag">BILIM SINOVI</div>
+    <div class="ptitle">O'QUV <span>VAZIFALARI</span></div>
+    <div style="display:flex;gap:10px;margin-bottom:24px;">
+      <button class="btn btn-or" onclick="openCreateTask()">➕ Yangi vazifa</button>
+    </div>
+    ${DATA.tasks.map(t => `
+      <div class="card" style="margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+          <span style="font-size:32px;">${t.emoji}</span>
+          <div style="flex:1;">
+            <div style="font-size:16px;font-weight:800;">${t.title}</div>
+            <div style="font-size:13px;color:var(--text2);margin-top:3px;">${t.desc}</div>
+          </div>
+          <div style="text-align:right;">
+            <span class="badge bg-orange">+${t.points} coin</span>
+            <div style="font-size:12px;color:var(--text3);margin-top:4px;">Muddat: ${t.deadline}</div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--text3);margin-bottom:10px;">O'QUVCHILAR HOLATI</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          ${Object.entries(t.submissions).map(([sid, status]) => {
+                const st = DATA.students[sid];
+                const statusMap = { null: ['Topshirilmagan', 'bg-gray'], pending: ['Kutilmoqda', 'bg-orange'], approved: ['Tasdiqlandi', 'bg-green'] };
+                const [lbl, cls] = statusMap[status] || statusMap[null];
+                return `<div style="background:var(--bg2);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;min-width:200px;">
+              <div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:${st.color};font-size:13px;">${st.avatar}</div>
+              <div style="flex:1;"><div style="font-size:13px;font-weight:700;">${st.name}</div><span class="badge ${cls}" style="font-size:10px;">${lbl}</span></div>
+              ${status === 'pending' ? `<div style="display:flex;gap:6px;"><button class="btn btn-gr btn-sm" onclick="approveTask(${t.id},'${sid}')">✅</button><button class="btn btn-rd btn-sm" onclick="rejectTask(${t.id},'${sid}')">❌</button></div>` : ''}
+            </div>`;
+            }).join('')}
+        </div>
+      </div>
+    `).join('')}
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function renderAdminPayments() {
+            const sts = Object.values(DATA.students);
+            document.getElementById('page-a-payments').innerHTML = `
+    <div class="ptag">MOLIYA</div>
+    <div class="ptitle">TO'LOV <span>BOSHQARUVI</span></div>
+    <div class="g3" style="margin-bottom:24px;">
+      ${sts.map(st => {
+                const pays = DATA.payments[st.id] || [];
+                const total = pays.reduce((s, p) => s + p.amount, 0);
+                return `<div class="card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:${st.color};font-size:17px;">${st.avatar}</div>
+            <div><div style="font-weight:700;">${st.name}</div><div style="font-size:12px;color:var(--text3);">${st.group}</div></div>
+          </div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">OYLIK TO'LOV</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;margin-bottom:8px;">150,000 so'm</div>
+          <span class="badge ${st.feeStatus === 'tolangan' ? 'bg-green' : 'bg-red'}">${st.feeStatus}</span>
+          <div style="margin-top:12px;font-size:12px;color:var(--text3);">Jami: ${total.toLocaleString()} so'm</div>
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <button class="btn btn-gr btn-sm" onclick="confirmPayment('${st.id}')">💳 To'lov qo'shish</button>
+            <button class="btn ${st.feeStatus === 'tolangan' ? 'btn-rd' : 'btn-ghost'} btn-sm" onclick="toggleFeeStatus('${st.id}')">
+              ${st.feeStatus === 'tolangan' ? '🔄 Kutilmoqda' : '✅ To\'langan'}
+            </button>
+          </div>
+        </div>`;
+            }).join('')}
+    </div>
+    <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);margin-bottom:14px;">TO'LOV TARIXI</div>
+    <table class="tbl" style="background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
+      <thead><tr><th>O'QUVCHI</th><th>SUMMA</th><th>SANA</th><th>USUL</th><th>HOLAT</th></tr></thead>
+      <tbody>
+        ${sts.flatMap(st => (DATA.payments[st.id] || []).map(p => `
+          <tr>
+            <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:28px;height:28px;border-radius:50%;background:${st.color};display:flex;align-items:center;justify-content:center;font-size:12px;">${st.avatar}</div>${st.name}</div></td>
+            <td style="font-weight:700;color:var(--green);">+${p.amount.toLocaleString()} so'm</td>
+            <td>${p.date}</td><td>${p.method}</td>
+            <td><span class="badge bg-green">${p.status}</span></td>
+          </tr>`)).join('')}
+      </tbody>
+    </table>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function renderAdminCoins() {
+            const sts = Object.values(DATA.students);
+            document.getElementById('page-a-coins').innerHTML = `
+    <div class="ptag">MOTIVATSIYA TIZIMI</div>
+    <div class="ptitle blue">COIN <span>TIZIMI</span></div>
+    <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg,rgba(255,107,26,.08),rgba(155,89,182,.06));border-color:rgba(255,107,26,.2);">
+      <div style="font-size:14px;font-weight:800;margin-bottom:14px;">🪙 Coin Qoidalari</div>
+      <div class="g2">
+        <div><div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:8px;">✅ COIN QO'SHILADI</div>
+          <div style="font-size:13px;color:var(--text2);line-height:2;">• Darsga kelish: <strong style="color:var(--green);">+10 coin</strong><br>• Vazifa topshirish & tasdiqlanishi: <strong style="color:var(--green);">+vazifa ball</strong><br>• Reyting 1-o'rin (haftalik): <strong style="color:var(--green);">+50 coin</strong></div>
+        </div>
+        <div><div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:8px;">❌ COIN AYIRILADI</div>
+          <div style="font-size:13px;color:var(--text2);line-height:2;">• Darsga kelmaslik: <strong style="color:var(--red);">-20 coin</strong><br>• Vazifani kechiktirib topshirish: <strong style="color:var(--red);">-10 coin</strong><br>• Market xaridlari: <strong style="color:var(--red);">-narx</strong></div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);margin-bottom:14px;">O'QUVCHILAR COIN BALANSI</div>
+    ${sts.sort((a, b) => b.coins - a.coins).map((st, i) => `
+      <div class="coin-flow-item" style="background:var(--card);">
+        <div class="rk-num ${i === 0 ? 'g1' : i === 1 ? 'g2' : i === 2 ? 'g3' : ''}">${i + 1}</div>
+        <div class="sr-av" style="background:${st.color};">${st.avatar}</div>
+        <div style="flex:1;"><div style="font-weight:700;">${st.name}</div><div style="font-size:12px;color:var(--text3);">${st.group}</div></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--orange);">🪙 ${st.coins}</div>
+        <div style="display:flex;gap:6px;">
+          <button class="btn btn-gr btn-sm" onclick="openAddCoins('${st.id}')">+ Coin</button>
+          <button class="btn btn-rd btn-sm" onclick="openRemoveCoins('${st.id}')">- Coin</button>
+        </div>
+      </div>
+    `).join('')}
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        // ============================================================
+        //  ADMIN ACTIONS
+        // ============================================================
+        function openAddStudent() {
+            openModal('Yangi O\'quvchi Qo\'shish', `
+    <div class="form-row"><div class="form-lb">TO'LIQ ISM</div><input class="form-in" id="ns-name" placeholder="Ism Familiya"></div>
+    <div class="form-row"><div class="form-lb">LOGIN (username)</div><input class="form-in" id="ns-id" placeholder="masalan: ali123"></div>
+    <div class="form-row"><div class="form-lb">PAROL</div><input class="form-in" id="ns-pass" placeholder="Parol" value="123"></div>
+    <div class="form-row"><div class="form-lb">TELEFON</div><input class="form-in" id="ns-phone" placeholder="+998901234567"></div>
+    <div class="form-row"><div class="form-lb">KURS</div>
+      <select class="form-in" id="ns-course"><option>Frontend</option><option>Backend</option><option>Python</option><option>Design</option><option>Mobile</option></select></div>
+    <div class="form-row"><div class="form-lb">GURUH</div><input class="form-in" id="ns-group" placeholder="masalan: 3-GROUP"></div>
+    <button class="btn btn-or btn-full" onclick="addStudent()">➕ Qo'shish</button>`);
+        }
+
+        function addStudent() {
+            const n = document.getElementById('ns-name').value.trim();
+            const id = document.getElementById('ns-id').value.trim().toLowerCase().replace(/\s/g, '');
+            const pass = document.getElementById('ns-pass').value.trim();
+            const phone = document.getElementById('ns-phone').value.trim();
+            const course = document.getElementById('ns-course').value;
+            const group = document.getElementById('ns-group').value.trim();
+            if (!n || !id || !pass) { notify('⚠️ Barcha maydonlarni to\'ldiring!', 'error'); return; }
+            if (DATA.students[id]) { notify('⚠️ Bu username band!', 'error'); return; }
+            const colors = ['linear-gradient(135deg,#e74c3c,#c0392b)', 'linear-gradient(135deg,#9b59b6,#8e44ad)', 'linear-gradient(135deg,#1abc9c,#16a085)', 'linear-gradient(135deg,#3d9cff,#2980b9)'];
+            const emojis = ['👨‍💻', '👩‍💻', '🧑‍🎓', '👨‍🔬'];
+            const idx = Object.keys(DATA.students).length % 4;
+            DATA.students[id] = { name: n, id, password: pass, role: 'student', coins: 0, phone, course, group, avatar: emojis[idx], color: colors[idx], monthlyFee: 300000, feeStatus: 'kutilmoqda' };
+            DATA.attendance[id] = [];
+            DATA.payments[id] = [];
+            DATA.coinHistory[id] = [];
+            saveData();
+            closeModal();
+            notify(`✅ ${n} muvaffaqiyatli qo'shildi!`, 'success');
+            renderAdminStudents();
+            renderAdminDash();
+        }
+
+        function openCreateTask() {
+            openModal('Yangi Vazifa Yaratish', `
+    <div class="form-row"><div class="form-lb">VAZIFA NOMI</div><input class="form-in" id="nt-title" placeholder="Masalan: HTML Loyiha"></div>
+    <div class="form-row"><div class="form-lb">TAVSIF</div><textarea class="form-in" id="nt-desc" placeholder="Vazifa tavsifi..."></textarea></div>
+    <div class="form-row"><div class="form-lb">BALL (COIN)</div><input class="form-in" id="nt-pts" type="number" placeholder="100" value="100"></div>
+    <div class="form-row"><div class="form-lb">MUDDAT</div><input class="form-in" id="nt-dl" type="date" value="2026-03-31"></div>
+    <div class="form-row"><div class="form-lb">EMOJI</div>
+      <select class="form-in" id="nt-em"><option>🖥️</option><option>⚡</option><option>🎨</option><option>📱</option><option>🔧</option><option>📊</option><option>🚀</option></select></div>
+    <button class="btn btn-or btn-full" onclick="createTask()">➕ Vazifa Yaratish</button>`);
+        }
+
+        function createTask() {
+            const title = document.getElementById('nt-title').value.trim();
+            const desc = document.getElementById('nt-desc').value.trim();
+            const pts = parseInt(document.getElementById('nt-pts').value) || 100;
+            const dl = document.getElementById('nt-dl').value;
+            const emoji = document.getElementById('nt-em').value;
+            if (!title) { notify('⚠️ Vazifa nomini kiriting!', 'error'); return; }
+            const subs = {};
+            Object.keys(DATA.students).forEach(id => { subs[id] = null; });
+            const newId = Math.max(...DATA.tasks.map(t => t.id), 0) + 1;
+            DATA.tasks.push({ id: newId, title, desc, points: pts, deadline: dl, emoji, submissions: subs });
+            saveData();
+            closeModal();
+            notify('✅ Vazifa muvaffaqiyatli yaratildi!', 'success');
+            renderAdminTasks();
+            renderAdminDash();
+        }
+
+        function openAddCoins(sid) {
+            const st = DATA.students[sid];
+            openModal(`🪙 ${st.name} — Coin Qo'shish`, `
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--orange);">🪙 ${st.coins}</div>
+      <div style="color:var(--text3);">Hozirgi balans</div>
+    </div>
+    <div class="form-row"><div class="form-lb">COIN MIQDORI</div><input class="form-in" id="ac-amt" type="number" placeholder="50" value="50"></div>
+    <div class="form-row"><div class="form-lb">SABAB</div><input class="form-in" id="ac-reason" placeholder="Qo'shilish sababi"></div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-gr btn-full" onclick="addCoins('${sid}',1)">➕ Coin Qo'shish</button>
+      <button class="btn btn-rd btn-full" onclick="addCoins('${sid}',-1)">➖ Coin Ayirish</button>
+    </div>`);
+        }
+
+        function openRemoveCoins(sid) { openAddCoins(sid); }
+
+        function addCoins(sid, sign) {
+            const amt = parseInt(document.getElementById('ac-amt').value) || 0;
+            const reason = document.getElementById('ac-reason').value.trim() || 'Admin tomonidan';
+            if (!amt) { notify('⚠️ Miqdor kiriting!', 'error'); return; }
+            DATA.students[sid].coins = Math.max(0, DATA.students[sid].coins + sign * amt);
+            DATA.coinHistory[sid] = DATA.coinHistory[sid] || [];
+            DATA.coinHistory[sid].unshift({ type: sign > 0 ? '+' : '-', amount: amt, desc: reason, date: new Date().toISOString().slice(5, 10) });
+            saveData();
+            closeModal();
+            notify(`${sign > 0 ? '✅' : '❌'} ${DATA.students[sid].name} ${sign > 0 ? '+' : '−'}${amt} coin`, sign > 0 ? 'success' : 'error');
+            renderAdminCoins();
+            renderAdminStudents();
+        }
+
+        function confirmPayment(sid) {
+            const st = DATA.students[sid];
+            openModal(`💳 ${st.name} — To'lov Qo'shish`, `
+    <div class="form-row"><div class="form-lb">SUMMA</div><input class="form-in" id="pay-amt" type="number" value="150000"></div>
+    <div class="form-row"><div class="form-lb">USUL</div>
+      <select class="form-in" id="pay-method"><option>Naqd</option><option>Karta</option><option>Click</option><option>Payme</option></select></div>
+    <div class="form-row"><div class="form-lb">SANA</div><input class="form-in" id="pay-date" type="date" value="${new Date().toISOString().split('T')[0]}"></div>
+    <button class="btn btn-or btn-full" onclick="savePay('${sid}')">💳 Tasdiqlash</button>`);
+        }
+
+        function savePay(sid) {
+            const amt = parseInt(document.getElementById('pay-amt').value) || 300000;
+            const method = document.getElementById('pay-method').value;
+            const date = document.getElementById('pay-date').value;
+            DATA.payments[sid] = DATA.payments[sid] || [];
+            DATA.payments[sid].unshift({ id: Date.now(), amount: amt, date, method, status: 'tasdiqlangan' });
+            DATA.students[sid].feeStatus = 'tolangan';
+            saveData();
+            closeModal();
+            notify('✅ To\'lov tasdiqlandi!', 'success');
+            renderAdminPayments();
+            renderAdminStudents();
+        }
+
+        function toggleFeeStatus(sid) {
+            DATA.students[sid].feeStatus = DATA.students[sid].feeStatus === 'tolangan' ? 'kutilmoqda' : 'tolangan';
+            saveData();
+            renderAdminPayments();
+            renderAdminStudents();
+        }
+
+        // ============================================================
+        //  STUDENT PAGES
+        // ============================================================
+        function getSt() { return DATA.students[currentUser.id]; }
+
+        function renderStudentDash() {
+            const st = getSt();
+            const att = DATA.attendance[st.id] || [];
+            const came = att.filter(a => a.status === 'kelgan').length;
+            const pct = att.length ? Math.round(came / att.length * 100) : 0;
+            const myTasks = DATA.tasks.filter(t => t.submissions[st.id] === null).length;
+
+            document.getElementById('page-s-dash').innerHTML = `
+    <div class="wb">
+      <div>
+        <div class="welcome-tag">★ XUSH KELIBSIZ!</div>
+        <div class="welcome-name">SALOM, <span>${st.name.split(' ')[0].toUpperCase()}</span>! 👋</div>
+      </div>
+      <div class="wbav" onclick="navTo('s-profile',document.querySelector('[onclick*=s-profile]'))">
+        <span>${st.avatar}</span>
+        <div class="wbav-dot"></div>
+      </div>
+    </div>
+    <div class="g3" style="margin-bottom:16px;">
+      <div class="stat-card balance-grad pulse">
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;opacity:.7;margin-bottom:12px;">MENING BALANSIM</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;">🪙 ${st.coins}</div>
+        <button class="bg-add" onclick="navTo('s-market',document.querySelector('[onclick*=s-market]'))">🛍️</button>
+      </div>
+      <div class="stat-card" style="background:var(--card);border:1px solid var(--border);">
+        <div class="sc-ic" style="background:rgba(0,214,143,.12);">✅</div>
+        <div class="sc-lb">DAVOMAT FOIZI</div>
+        <div class="sc-val" style="color:var(--green);">${pct}%</div>
+      </div>
+      <div class="stat-card" style="background:var(--card);border:1px solid var(--border);">
+        <div class="sc-ic" style="background:rgba(255,107,26,.12);">📋</div>
+        <div class="sc-lb">KUTILAYOTGAN</div>
+        <div class="sc-val" style="color:var(--orange);">${myTasks}</div>
+      </div>
+    </div>
+    <div class="ic-pair">
+      <div class="icard" onclick="navTo('s-course',document.querySelector('[onclick*=s-course]'))">
+        <div class="icard-ico">🏛️</div>
+        <div><div class="icard-lb">MENING GURUHIM</div><div class="icard-val">${st.group}</div></div>
+        <span style="margin-left:auto;color:var(--text3);">→</span>
+      </div>
+      <div class="icard" style="background:linear-gradient(135deg,rgba(61,156,255,.06),transparent);border-color:rgba(61,156,255,.15);">
+        <div class="icard-ico" style="background:rgba(61,156,255,.1);">🕐</div>
+        <div><div class="icard-lb">DARS VAQTI</div><div class="icard-val" style="color:var(--blue);">10:30 - 14:00</div></div>
+        <span style="margin-left:auto;color:var(--text3);">📆</span>
+      </div>
+    </div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:var(--text3);margin-bottom:14px;">ASOSIY BO'LIMLAR</div>
+    <div class="qgrid">
+      <div class="qcard" onclick="navTo('s-rating',document.querySelector('[onclick*=s-rating]'))">
+        <div class="qic" style="background:rgba(241,196,15,.12);">🏆</div><div class="qlb">OMAD</div>
+      </div>
+      <div class="qcard" onclick="navTo('s-market',document.querySelector('[onclick*=s-market]'))">
+        <div class="qic" style="background:rgba(255,107,26,.12);">🛍️</div><div class="qlb">MARKET</div>
+      </div>
+      <div class="qcard" onclick="navTo('s-rating',document.querySelector('[onclick*=s-rating]'))">
+        <div class="qic" style="background:rgba(0,188,212,.12);">👥</div><div class="qlb">DO'STLAR</div>
+      </div>
+      <div class="qcard" onclick="navTo('s-rating',document.querySelector('[onclick*=s-rating]'))">
+        <div class="qic" style="background:rgba(0,214,143,.12);">📈</div><div class="qlb">REYTING</div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:800;letter-spacing:2px;">AKTIVLIK LOGI</div>
+          <span class="badge bg-green" style="font-size:10px;">OXIRGI ${Math.min(att.length, 6)} DARS</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          ${att.slice(0, 6).map(a => `<div class="attend-dot ${a.status === 'kelgan' ? 'ad-came' : 'ad-missed'}">${a.status === 'kelgan' ? '✅' : '❌'}</div>`).join('')}
+        </div>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div style="font-size:12px;font-weight:800;letter-spacing:2px;">TO'LOV TARIXI</div>
+          <span style="cursor:pointer;color:var(--text3);font-size:18px;" onclick="navTo('s-pay',document.querySelector('[onclick*=s-pay]'))">→</span>
+        </div>
+        ${(DATA.payments[st.id] || []).slice(0, 2).map(p => `
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg2);border-radius:12px;margin-bottom:8px;">
+            <div style="width:34px;height:34px;background:rgba(0,214,143,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;">💳</div>
+            <div><div style="font-size:15px;font-weight:700;">${p.amount.toLocaleString()} so'm</div><div style="font-size:11px;color:var(--text3);">${p.date}</div></div>
+            <div style="margin-left:auto;width:8px;height:8px;background:var(--green);border-radius:50%;"></div>
+          </div>`).join('') || '<div style="color:var(--text3);font-size:13px;">To\'lovlar yo\'q</div>'}
+      </div>
+    </div>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED CREATED BY: MUHAMMADAZIZ YAKUBOV</div>`;
+        }
+
+        function renderStudentCourse() {
+            const st = getSt();
+            document.getElementById('page-s-course').innerHTML = `
+    <div class="ptag">O'QUV KURSI</div>
+    <div class="ptitle">KURS & <span>GURUH</span></div>
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <div class="card" style="flex:1;">
+        <div style="display:flex;align-items:flex-start;gap:22px;">
+          <div style="width:80px;height:80px;background:linear-gradient(135deg,var(--orange),#e74c3c);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;">🎓</div>
+          <div style="flex:1;">
+            <span class="badge bg-orange" style="margin-bottom:10px;">${st.group}</span>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:46px;letter-spacing:3px;line-height:1;margin-bottom:12px;">${st.course.toUpperCase()}</div>
+            <div style="font-size:14px;color:var(--text2);font-style:italic;line-height:1.6;margin-bottom:20px;">${st.course} kursi – HTML, CSS, JavaScript va zamonaviy frameworklar orqali interaktiv va responsive ilovalar yaratishni o'rgatadi.</div>
+            <div class="g2">
+              <div class="card2"><div style="font-size:11px;color:var(--text3);font-weight:700;letter-spacing:1px;margin-bottom:4px;">KURS USTOZINGIZ</div><div style="font-size:14px;font-weight:700;">Muhammadaziz Marufjonov</div></div>
+              <div class="card2"><div style="font-size:11px;color:var(--text3);font-weight:700;letter-spacing:1px;margin-bottom:4px;">KURS DAVOMIYLIGI</div><div style="font-size:14px;font-weight:700;">9 oy</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width:270px;flex-shrink:0;">
+        <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text2);display:flex;align-items:center;gap:8px;margin-bottom:18px;"><span style="width:8px;height:8px;background:var(--orange);border-radius:50%;display:inline-block;"></span>DARS JADVALI</div>
+        <div class="card2" style="margin-bottom:12px;display:flex;align-items:center;gap:12px;"><span style="font-size:22px;">📅</span><div><div style="font-size:11px;color:var(--text3);font-weight:600;letter-spacing:1px;">HAFTANING KUNLARI</div><div style="font-size:15px;font-weight:700;">Ses, Pay, Shan</div></div></div>
+        <div style="background:var(--orange);border-radius:14px;padding:18px;display:flex;align-items:center;gap:12px;"><span style="font-size:22px;">⏰</span><div><div style="font-size:11px;font-weight:700;opacity:.8;letter-spacing:1px;margin-bottom:3px;">DARS BOSHLANISHI</div><div style="font-size:26px;font-weight:800;">10:30 - 14:00</div></div></div>
+      </div>
+    </div>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function renderStudentAttend() {
+            const st = getSt();
+            const att = DATA.attendance[st.id] || [];
+            const came = att.filter(a => a.status === 'kelgan').length;
+            const missed = att.filter(a => a.status === 'kelmagan').length;
+
+            document.getElementById('page-s-attend').innerHTML = `
+    <div class="ptag">YUTUQLAR SARI</div>
+    <div class="ptitle">DARS <span>DAVOMATI</span></div>
+    <div class="g2" style="max-width:580px;margin-bottom:28px;">
+      <div style="background:rgba(0,214,143,.08);border:1px solid rgba(0,214,143,.15);border-radius:18px;padding:28px;text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:62px;color:var(--green);line-height:1;">${came}</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--text3);margin-top:6px;">KELGAN DARSLAR</div>
+      </div>
+      <div style="background:rgba(255,77,109,.08);border:1px solid rgba(255,77,109,.15);border-radius:18px;padding:28px;text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:62px;color:var(--red);line-height:1;">${missed}</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--text3);margin-top:6px;">KELMAGAN DARSLAR</div>
+      </div>
+    </div>
+    <div style="font-size:12px;font-weight:800;letter-spacing:3px;color:var(--text3);margin-bottom:14px;">O'QUV YILI BO'YICHA TARIX</div>
+    <div class="g3">
+      ${att.map(a => `
+        <div class="card2" style="display:flex;align-items:center;gap:14px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'">
+          <div style="width:38px;height:38px;background:rgba(0,214,143,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;">📅</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;">${a.date.slice(5).replace('-', '/')}</div>
+            <div style="font-size:11px;color:var(--text3);font-weight:600;letter-spacing:1px;">${a.day}</div>
+          </div>
+          <span class="badge ${a.status === 'kelgan' ? 'bg-green' : 'bg-red'}" style="margin-left:auto;font-size:10px;">${a.status.toUpperCase()}</span>
+        </div>`).join('')}
+    </div>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function renderStudentPay() {
+            const st = getSt();
+            const pays = DATA.payments[st.id] || [];
+            document.getElementById('page-s-pay').innerHTML = `
+    <div class="ptag">MOLIYA BO'LIMI</div>
+    <div class="ptitle">O'QUV <span>TO'LOVLARIM</span></div>
+    <div class="card" style="margin-bottom:24px;position:relative;">
+      <span class="badge ${st.feeStatus === 'tolangan' ? 'bg-green' : 'bg-red'}" style="position:absolute;top:24px;right:24px;font-size:12px;">${st.feeStatus === 'tolangan' ? 'TA\'LIM FAOL' : 'TO\'LOV KUTILMOQDA'}</span>
+      <div style="font-size:28px;margin-bottom:16px;">💳</div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--text3);margin-bottom:8px;">SIZNING OYLIK TO'LOVINGIZ</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:2px;margin-bottom:22px;">${st.monthlyFee.toLocaleString()} so'm</div>
+      <div class="g2" style="max-width:500px;">
+        <div class="card2"><div style="font-size:11px;color:var(--text3);font-weight:600;letter-spacing:1px;margin-bottom:4px;">TO'LOV HOLATI</div><div style="font-size:14px;font-weight:700;color:${st.feeStatus === 'tolangan' ? 'var(--green)' : 'var(--red)'};">${st.feeStatus.toUpperCase()}</div></div>
+        <div class="card2"><div style="font-size:11px;color:var(--text3);font-weight:600;letter-spacing:1px;margin-bottom:4px;">SANA</div><div style="font-size:14px;font-weight:700;">HAR OY 15-SANA</div></div>
+      </div>
+    </div>
+    <div style="font-size:12px;font-weight:800;letter-spacing:3px;color:var(--text3);margin-bottom:14px;">BARCHA AMALGA OSHIRILGAN TO'LOVLAR</div>
+    ${pays.length ? pays.map(p => `
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:14px;margin-bottom:10px;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="width:42px;height:42px;background:rgba(0,214,143,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;">💳</div>
+        <div><div style="font-size:19px;font-weight:700;color:var(--green);">+${p.amount.toLocaleString()} so'm</div><div style="font-size:12px;color:var(--text3);">${p.date}</div><div style="font-size:11px;color:var(--text3);font-weight:600;letter-spacing:1px;">${p.method}</div></div>
+        <span class="badge bg-green" style="margin-left:auto;">TASDIQ</span>
+      </div>`).join('') : '<div style="color:var(--text3);font-size:14px;padding:20px;text-align:center;">To\'lovlar hali yo\'q</div>'}
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function renderStudentTasks(tab = 'faol') {
+            const st = getSt();
+            const allTasks = DATA.tasks;
+            const active = allTasks.filter(t => t.submissions[st.id] === null || t.submissions[st.id] === 'pending');
+            const done = allTasks.filter(t => t.submissions[st.id] === 'approved');
+
+            document.getElementById('page-s-tasks').innerHTML = `
+    <div class="ptitle">O'QUV <span>VAZIFALARI</span></div>
+    <div style="font-size:12px;font-weight:600;letter-spacing:2px;color:var(--text3);margin-top:-20px;margin-bottom:24px;">BILIMNI MUSTAHKAMLASH VA BALLAR TO'PLASH VAQTI</div>
+    <div style="display:flex;gap:8px;margin-bottom:24px;">
+      <button class="btn ${tab === 'faol' ? 'btn-or' : 'btn-ghost'}" onclick="renderStudentTasks('faol')">FAOL (${active.length})</button>
+      <button class="btn ${tab === 'done' ? 'btn-or' : 'btn-ghost'}" onclick="renderStudentTasks('done')">TUGATILGAN (${done.length})</button>
+    </div>
+    <div class="g3">
+      ${(tab === 'faol' ? active : done).map(t => {
+                const sub = t.submissions[st.id];
+                return `<div class="task-card-s">
+          <div class="task-img" style="${sub === 'approved' ? 'background:rgba(0,214,143,.06)' : ''}">
+            ${t.emoji}
+            <div class="task-ball">${sub === 'approved' ? '+' + t.points : t.points} BALL</div>
+          </div>
+          <div class="task-body">
+            <div class="task-title">${t.title}</div>
+            <div style="font-size:13px;color:var(--text2);margin-bottom:10px;line-height:1.5;">${t.desc}</div>
+            <div class="task-dl">⏰ MUDDAT: ${t.deadline}</div>
+            ${sub === 'approved' ? `<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:rgba(0,214,143,.1);border-radius:10px;color:var(--green);font-size:13px;font-weight:700;">✅ MUVAFFAQIYATLI TOPSHIRILDI</div>` :
+                        sub === 'pending' ? `<div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:rgba(255,107,26,.1);border-radius:10px;color:var(--orange);font-size:13px;font-weight:700;">⏳ TEKSHIRILMOQDA...</div>` :
+                            `<div style="display:flex;gap:8px;">
+                <button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center;" onclick="openTaskDetail(${t.id})">👁 BATAFSIL</button>
+                <button class="btn btn-or btn-sm" style="flex:1.4;justify-content:center;" onclick="submitMyTask(${t.id})">⬆ TOPSHIRISH</button>
+              </div>`}
+          </div>
+        </div>`;
+            }).join('') || `<div style="grid-column:1/-1;text-align:center;color:var(--text3);padding:40px;">
+        ${tab === 'faol' ? '✅ Barcha vazifalar tugallangan!' : '📋 Hali tugatilgan vazifalar yo\'q'}
+      </div>`}
+    </div>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED CREATED BY: MUHAMMADAZIZ YAKUBOV</div>`;
+        }
+
+        function openTaskDetail(tid) {
+            const t = DATA.tasks.find(x => x.id === tid);
+            openModal(t.title, `
+    <div style="font-size:40px;text-align:center;margin-bottom:16px;">${t.emoji}</div>
+    <div style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:16px;">${t.desc}</div>
+    <div class="g2" style="margin-bottom:16px;">
+      <div class="card2"><div style="font-size:11px;color:var(--text3);">BALL</div><div style="font-size:18px;font-weight:800;color:var(--orange);">🪙 +${t.points}</div></div>
+      <div class="card2"><div style="font-size:11px;color:var(--text3);">MUDDAT</div><div style="font-size:15px;font-weight:700;">${t.deadline}</div></div>
+    </div>
+    <button class="btn btn-or btn-full" onclick="submitMyTask(${t.id});closeModal()">⬆ Topshirish</button>`);
+        }
+
+        function submitMyTask(tid) {
+            const st = getSt();
+            DATA.tasks.find(t => t.id === tid).submissions[st.id] = 'pending';
+            saveData();
+            notify('📤 Vazifa topshirildi! Admin tekshiradi...', 'info');
+            renderStudentTasks('faol');
+            renderStudentDash();
+        }
+
+        function renderStudentMarket() {
+            const st = getSt();
+            document.getElementById('page-s-market').innerHTML = `
+    <div class="mkt-header">
+      <div>
+        <div class="mkt-brand">SENIOR <span>MARKET</span></div>
+        <div class="mkt-tagline">COINLARINGIZ EVAZIGA AJOYIB SOVGʻALAR VA<br>MAHSULOTLARNI SOTIB OLING!</div>
+      </div>
+      <div class="mkt-bal">
+        <div class="mkt-bal-lbl">SIZNING BALANSINGIZ</div>
+        <div class="mkt-bal-n">🪙 ${st.coins}</div>
+      </div>
+    </div>
+    <div class="g4" style="margin-bottom:24px;">
+      ${DATA.market.map(p => `
+        <div class="pcard">
+          <div class="pcard-img"><div style="font-size:54px;">${p.emoji}</div>
+            <div class="pcard-cnt">QOLDI: ${p.count} TA</div>
+            <div class="pcard-price">🪙 ${p.price}</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-name">${p.name}</div>
+            <div class="pcard-desc">${p.desc}</div>
+            ${st.coins >= p.price && p.count > 0
+                    ? `<button class="btn-buy" onclick="buyItem(${p.id})">🛒 Sotib olish</button>`
+                    : `<button class="btn-buy" disabled>${p.count === 0 ? 'TUGADI' : 'COIN YETARLI EMAS'}</button>`}
+          </div>
+        </div>`).join('')}
+    </div>
+    <div class="g2">
+      <div class="card" style="display:flex;gap:14px;align-items:flex-start;">
+        <div style="width:42px;height:42px;border-radius:12px;background:rgba(0,214,143,.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📈</div>
+        <div><div style="font-size:13px;font-weight:800;letter-spacing:1px;margin-bottom:6px;">COINLARNI KO'PAYTIRING</div><div style="font-size:12px;color:var(--text3);line-height:1.6;">VAZIFALARNI O'Z VAQTIDA TOPSHIRIB DARSLARGA DARS QOLDIRMASDAN KELSANGIZ COINLARINGIZ AVTOMATIK KO'PAYIB BORADI.</div></div>
+      </div>
+      <div class="card" style="display:flex;gap:14px;align-items:flex-start;">
+        <div style="width:42px;height:42px;border-radius:12px;background:rgba(255,107,26,.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">⚡</div>
+        <div><div style="font-size:13px;font-weight:800;letter-spacing:1px;margin-bottom:6px;">JAZOLARDAN EHTIYOT BO'LING</div><div style="font-size:12px;color:var(--text3);line-height:1.6;">DARSGA KELMASLIK YOKI VAZIFA TOPSHIRMASLIK COINLARINGIZ AYIRILISHIGA SABAB BO'LADI. INTIZOMLI BO'LING!</div></div>
+      </div>
+    </div>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function buyItem(pid) {
+            const st = DATA.students[currentUser.id];
+            const item = DATA.market.find(p => p.id === pid);
+            if (!item || st.coins < item.price || item.count === 0) { notify('❌ Yetarli coin yo\'q!', 'error'); return; }
+            openModal(`🛒 ${item.name} Sotib olish`, `
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:56px;margin-bottom:10px;">${item.emoji}</div>
+      <div style="font-size:18px;font-weight:800;">${item.name}</div>
+      <div style="font-size:13px;color:var(--text2);margin-top:6px;">${item.desc}</div>
+    </div>
+    <div class="g2" style="margin-bottom:20px;">
+      <div class="card2" style="text-align:center;"><div style="font-size:11px;color:var(--text3);">NARXI</div><div style="font-size:22px;font-weight:800;color:var(--orange);">🪙 ${item.price}</div></div>
+      <div class="card2" style="text-align:center;"><div style="font-size:11px;color:var(--text3);">SIZNING BALANSINGIZ</div><div style="font-size:22px;font-weight:800;">${st.coins}</div></div>
+    </div>
+    <div class="card2" style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:11px;color:var(--text3);">XARID SO'NGRA BALANSINGIZ</div>
+      <div style="font-size:20px;font-weight:800;color:${st.coins - item.price >= 0 ? 'var(--green)' : 'var(--red)'};">🪙 ${st.coins - item.price}</div>
+    </div>
+    <button class="btn btn-or btn-full" onclick="confirmBuy(${pid})">✅ Ha, sotib olaman!</button>`);
+        }
+
+        function confirmBuy(pid) {
+            const st = DATA.students[currentUser.id];
+            const item = DATA.market.find(p => p.id === pid);
+            st.coins -= item.price;
+            item.count--;
+            DATA.coinHistory[st.id] = DATA.coinHistory[st.id] || [];
+            DATA.coinHistory[st.id].unshift({ type: '-', amount: item.price, desc: `Market: ${item.name} sotib olindi`, date: new Date().toISOString().slice(5, 10) });
+            saveData();
+            closeModal();
+            notify(`🎉 ${item.name} muvaffaqiyatli sotib olindi!`, 'success');
+            renderStudentMarket();
+            renderStudentDash();
+        }
+
+        function renderStudentRating() {
+            const st = getSt();
+            const all = Object.values(DATA.students).sort((a, b) => b.coins - a.coins);
+            document.getElementById('page-s-rating').innerHTML = `
+    <div class="ptag">TOP O'QUVCHILAR</div>
+    <div class="ptitle">REYTING <span>JADVALI</span></div>
+    ${all.map((s, i) => `
+      <div class="rk-card ${s.id === st.id ? 'me' : ''}">
+        <div class="rk-num ${i === 0 ? 'g1' : i === 1 ? 'g2' : i === 2 ? 'g3' : ''}">${i + 1}</div>
+        <div class="rk-av" style="background:${s.color};">${s.avatar}</div>
+        <div><div class="rk-name">${s.name} ${s.id === st.id ? '<span style="color:var(--orange);font-size:11px;">(SEN)</span>' : ''}</div><div class="rk-grp">${s.group} • ${s.course}</div></div>
+        <div class="rk-coins">🪙 ${s.coins}</div>
+      </div>`).join('')}
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function renderStudentProfile() {
+            const st = getSt();
+            const att = DATA.attendance[st.id] || [];
+            const came = att.filter(a => a.status === 'kelgan').length;
+            const pct = att.length ? Math.round(came / att.length * 100) : 0;
+            const ch = DATA.coinHistory[st.id] || [];
+
+            document.getElementById('page-s-profile').innerHTML = `
+    <div style="text-align:center;margin-bottom:6px;"><div class="ptitle" style="display:inline;">SHAXSIY <span>PROFIL</span></div></div>
+    <div style="text-align:center;font-size:13px;color:var(--text3);margin-bottom:28px;">Ma'lumotlaringizni xavfsiz boshqaring</div>
+    <div class="profile-big">
+      <div class="pav-big" style="background:${st.color};border:3px solid var(--orange);">
+        ${st.avatar}
+        <div class="pav-online"></div>
+      </div>
+      <div class="pname-big">${st.name.toUpperCase()}</div>
+      <div class="pid-badge">STUDENT ID: ${st.id.toUpperCase()}</div>
+      <br>
+      <div style="display:flex;gap:12px;justify-content:center;">
+        <div class="card2" style="text-align:center;min-width:100px;"><div style="font-size:11px;color:var(--text3);">COIN</div><div style="font-size:22px;font-weight:800;color:var(--orange);">🪙 ${st.coins}</div></div>
+        <div class="card2" style="text-align:center;min-width:100px;"><div style="font-size:11px;color:var(--text3);">DAVOMAT</div><div style="font-size:22px;font-weight:800;color:var(--green);">${pct}%</div></div>
+        <div class="card2" style="text-align:center;min-width:100px;"><div style="font-size:11px;color:var(--text3);">GURUH</div><div style="font-size:16px;font-weight:800;">${st.group}</div></div>
+      </div>
+    </div>
+    <div style="max-width:560px;margin:0 auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);">SHAXSIY MA'LUMOTLAR</div>
+        <button class="btn btn-or btn-sm" onclick="openEditProfile()">✏️ Tahrirlash</button>
+      </div>
+
+      <div class="pfield">
+        <div class="pf-ic">👤</div>
+        <div><div class="pf-lb">TO'LIQ ISM</div><div class="pf-val">${st.name}</div></div>
+      </div>
+      <div class="pfield">
+        <div class="pf-ic">📞</div>
+        <div><div class="pf-lb">TELEFON RAQAM</div><div class="pf-val">${st.phone}</div></div>
+      </div>
+      <div class="pfield">
+        <div class="pf-ic">🎓</div>
+        <div><div class="pf-lb">KURS</div><div class="pf-val">${st.course}</div></div>
+      </div>
+      <div class="pfield">
+        <div class="pf-ic">👥</div>
+        <div><div class="pf-lb">GURUH</div><div class="pf-val">${st.group}</div></div>
+      </div>
+      <div class="pfield">
+        <div class="pf-ic">🔑</div>
+        <div style="flex:1;"><div class="pf-lb">PAROL</div><div class="pf-val">••••••</div></div>
+        <button class="btn btn-ghost btn-sm" onclick="openChangePassword()">🔒 O'zgartirish</button>
+      </div>
+      <div class="pfield">
+        <div class="pf-ic">🛡️</div>
+        <div><div class="pf-lb">XAVFSIZLIK</div><div class="pf-val">Faol Himoya</div></div>
+      </div>
+
+      <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);margin:20px 0 12px;">COIN TARIXI</div>
+      ${ch.slice(0, 8).map(c => `
+        <div class="coin-flow-item">
+          <div class="cf-icon ${c.type === '+' ? 'cf-plus' : 'cf-minus'}">${c.type === '+' ? '📈' : '📉'}</div>
+          <div style="flex:1;"><div class="cf-amount">${c.type}${c.amount} coin</div><div class="cf-desc">${c.desc}</div></div>
+          <div class="cf-date">${c.date}</div>
+        </div>`).join('') || '<div style="color:var(--text3);font-size:13px;padding:16px;">Coin tarixi yo\'q</div>'}
+    </div>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+        }
+
+        function openEditProfile() {
+            const st = getSt();
+            openModal('✏️ Ma\'lumotlarni Tahrirlash', `
+    <div class="form-row">
+      <div class="form-lb">TO'LIQ ISM</div>
+      <input class="form-in" id="ep-name" value="${st.name}" placeholder="Ism Familiya">
+    </div>
+    <div class="form-row">
+      <div class="form-lb">TELEFON RAQAM</div>
+      <input class="form-in" id="ep-phone" value="${st.phone}" placeholder="+998901234567">
+    </div>
+    <div style="background:rgba(255,107,26,.08);border:1px solid rgba(255,107,26,.2);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--text2);margin-bottom:16px;">
+      ℹ️ Kurs va guruh ma'lumotlarini faqat admin o'zgartira oladi.
+    </div>
+    <button class="btn btn-or btn-full" onclick="saveEditProfile()">💾 Saqlash</button>
+  `);
+        }
+
+        function saveEditProfile() {
+            const name = document.getElementById('ep-name').value.trim();
+            const phone = document.getElementById('ep-phone').value.trim();
+            if (!name) { notify('⚠️ Ism bo\'sh bo\'lmasin!', 'error'); return; }
+            DATA.students[currentUser.id].name = name;
+            DATA.students[currentUser.id].phone = phone;
+            currentUser.name = name;
+            saveData();
+            closeModal();
+            notify('✅ Ma\'lumotlar muvaffaqiyatli saqlandi!', 'success');
+            renderStudentProfile();
+            renderStudentDash();
+            // Update sidebar user name
+            const sn = document.querySelector('.s-un');
+            if (sn) sn.textContent = name.split(' ')[0];
+        }
+
+        function openChangePassword() {
+            openModal('🔒 Parolni O\'zgartirish', `
+    <div class="form-row">
+      <div class="form-lb">HOZIRGI PAROL</div>
+      <input class="form-in" id="cp-old" type="password" placeholder="Hozirgi parolingiz">
+    </div>
+    <div class="form-row">
+      <div class="form-lb">YANGI PAROL</div>
+      <input class="form-in" id="cp-new" type="password" placeholder="Yangi parol (kamida 3 belgi)">
+    </div>
+    <div class="form-row">
+      <div class="form-lb">YANGI PAROLNI TASDIQLANG</div>
+      <input class="form-in" id="cp-conf" type="password" placeholder="Parolni qayta kiriting">
+    </div>
+    <button class="btn btn-or btn-full" onclick="saveNewPassword()">🔒 Parolni Saqlash</button>
+  `);
+        }
+
+        function saveNewPassword() {
+            const oldP = document.getElementById('cp-old').value;
+            const newP = document.getElementById('cp-new').value;
+            const confP = document.getElementById('cp-conf').value;
+            const st = DATA.students[currentUser.id];
+            if (oldP !== st.password) { notify('❌ Hozirgi parol noto\'g\'ri!', 'error'); return; }
+            if (newP.length < 3) { notify('⚠️ Parol kamida 3 belgidan iborat bo\'lsin!', 'error'); return; }
+            if (newP !== confP) { notify('❌ Yangi parollar mos emas!', 'error'); return; }
+            DATA.students[currentUser.id].password = newP;
+            saveData();
+            closeModal();
+            notify('✅ Parol muvaffaqiyatli o\'zgartirildi!', 'success');
+        }
+
+        // ============================================================
+        //  BARABAN (SPIN WHEEL)
+        // ============================================================
+        const WHEEL_PRIZES = [
+            { label: '0', coins: 0, color: '#2a2a3a', textColor: '#5a5a7a', prob: 30 },
+            { label: '1', coins: 1, color: '#1a2a1a', textColor: '#00d68f', prob: 25 },
+            { label: '2', coins: 2, color: '#1a1a2e', textColor: '#3d9cff', prob: 20 },
+            { label: '10', coins: 10, color: '#2a1a2a', textColor: '#9b59b6', prob: 12 },
+            { label: '50', coins: 50, color: '#2a200a', textColor: '#f1c40f', prob: 7 },
+            { label: '100', coins: 100, color: '#1a2a0a', textColor: '#00d68f', prob: 3.9 },
+            { label: '150', coins: 150, color: '#2a0f0a', textColor: '#ff6b1a', prob: 2 },
+            { label: '1000', coins: 1000, color: '#1a0a2a', textColor: '#ff6b1a', prob: 0.1 },
+        ];
+        const SPIN_COST = 300;
+        const MAX_SPINS = 3;
+        const TOTAL_SLOTS = WHEEL_PRIZES.length;
+
+        let wheelAngle = 0;
+        let isSpinning = false;
+
+        function getSpinData(id) {
+            const today = new Date().toISOString().split('T')[0];
+            const key = `spin_${id}_${today}`;
+            const raw = localStorage.getItem(key);
+            return raw ? JSON.parse(raw) : { count: 0, date: today };
+        }
+        function saveSpinData(id, data) {
+            const today = new Date().toISOString().split('T')[0];
+            localStorage.setItem(`spin_${id}_${today}`, JSON.stringify(data));
+        }
+
+        function pickPrize() {
+            const r = Math.random() * 100;
+            let cum = 0;
+            for (const p of WHEEL_PRIZES) {
+                cum += p.prob;
+                if (r < cum) return p;
+            }
+            return WHEEL_PRIZES[0];
+        }
+
+        function drawWheel(angle) {
+            const canvas = document.getElementById('wheel-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const R = cx - 4;
+            const arc = (2 * Math.PI) / TOTAL_SLOTS;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // outer glow ring
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(cx, cy, R + 3, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'rgba(255,107,26,0.5)';
+            ctx.lineWidth = 6;
+            ctx.stroke();
+            ctx.restore();
+
+            WHEEL_PRIZES.forEach((prize, i) => {
+                const startAngle = angle + i * arc;
+                const endAngle = startAngle + arc;
+
+                // slice
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.arc(cx, cy, R, startAngle, endAngle);
+                ctx.closePath();
+                ctx.fillStyle = prize.color;
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                // text
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(startAngle + arc / 2);
+                ctx.textAlign = 'right';
+                ctx.fillStyle = prize.textColor;
+                ctx.font = `bold ${prize.coins >= 100 ? 18 : 22}px 'Outfit', sans-serif`;
+                ctx.shadowColor = prize.textColor;
+                ctx.shadowBlur = 6;
+                ctx.fillText(prize.label, R - 14, 7);
+                ctx.restore();
+            });
+
+            // center circle
+            ctx.beginPath();
+            ctx.arc(cx, cy, 36, 0, 2 * Math.PI);
+            ctx.fillStyle = '#09090f';
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255,107,26,0.4)';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+
+        function renderStudentBaraban() {
+            const st = getSt();
+            const sd = getSpinData(st.id);
+            const remaining = MAX_SPINS - sd.count;
+            const spinHistory = (DATA.coinHistory[st.id] || []).filter(c => c.desc.includes('Baraban')).slice(0, 8);
+
+            document.getElementById('page-s-baraban').innerHTML = `
+    <div class="ptag">OMAD SINASH VAQTI</div>
+    <div class="ptitle">BARABAN <span>🎰</span></div>
+    <div class="baraban-wrap">
+      <div class="wheel-outer">
+        <div class="wheel-pointer">▼</div>
+        <canvas id="wheel-canvas" width="360" height="360"></canvas>
+        <button class="wheel-center-btn" id="spin-btn" onclick="doSpin()"
+          ${remaining <= 0 || st.coins < SPIN_COST ? 'disabled' : ''}>
+          AYLAN<br>${SPIN_COST}🪙
+        </button>
+      </div>
+
+      <div class="spin-info-grid">
+        <div class="spin-info-box">
+          <div class="spin-info-lbl">BALANSINGIZ</div>
+          <div class="spin-info-val" style="color:var(--orange);">🪙 ${st.coins}</div>
+        </div>
+        <div class="spin-info-box">
+          <div class="spin-info-lbl">QOLGAN URINISH</div>
+          <div class="spin-info-val" style="color:${remaining > 0 ? 'var(--green)' : 'var(--red)'};">${remaining} / ${MAX_SPINS}</div>
+        </div>
+        <div class="spin-info-box">
+          <div class="spin-info-lbl">NARXI</div>
+          <div class="spin-info-val" style="color:var(--text2);">🪙 ${SPIN_COST}</div>
+        </div>
+      </div>
+
+      <div class="card" style="width:100%;max-width:480px;padding:20px 24px;">
+        <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);margin-bottom:14px;">🏆 MUKOFOTLAR RO'YXATI</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          ${WHEEL_PRIZES.map(p => `
+            <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--bg2);border-radius:10px;">
+              <div style="width:10px;height:10px;border-radius:50%;background:${p.textColor};flex-shrink:0;box-shadow:0 0 6px ${p.textColor};"></div>
+              <div style="font-size:14px;font-weight:800;color:${p.textColor};">🪙 ${p.label}</div>
+              <div style="margin-left:auto;font-size:11px;color:var(--text3);">${p.prob}%</div>
+            </div>`).join('')}
+        </div>
+        <div style="margin-top:14px;padding:12px 14px;background:rgba(255,107,26,.08);border:1px solid rgba(255,107,26,.2);border-radius:10px;font-size:12px;color:var(--text2);line-height:1.7;">
+          ⚡ Har kuni <strong style="color:var(--orange);">3 marta</strong> aylantirish mumkin<br>
+          💰 Har bir aylanish <strong style="color:var(--orange);">${SPIN_COST} coin</strong> sarflaydi<br>
+          🏆 <strong style="color:var(--orange);">1000 coin</strong> tushish ehtimoli: <strong style="color:var(--red);">0.1%</strong> — Omadingiz!
+        </div>
+      </div>
+
+      ${spinHistory.length ? `
+        <div class="baraban-history">
+          <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:var(--text3);margin-bottom:12px;">📋 OXIRGI NATIJALAR</div>
+          ${spinHistory.map(c => `
+            <div class="coin-flow-item" style="margin-bottom:8px;">
+              <div class="cf-icon ${c.type === '+' ? 'cf-plus' : 'cf-minus'}">${c.type === '+' ? '🎰' : '🎰'}</div>
+              <div style="flex:1;"><div class="cf-amount" style="color:${c.type === '+' ? 'var(--green)' : 'var(--red)'};">${c.type}${c.amount} coin</div><div class="cf-desc">${c.desc}</div></div>
+              <div class="cf-date">${c.date}</div>
+            </div>`).join('')}
+        </div>` : ''}
+    </div>
+    <div class="pfoot">© 2026 SENIOR CRM • ALL RIGHTS RESERVED</div>`;
+
+            // Draw wheel after render
+            setTimeout(() => drawWheel(wheelAngle), 50);
+        }
+
+        function doSpin() {
+            const st = DATA.students[currentUser.id];
+            const sd = getSpinData(st.id);
+
+            if (isSpinning) return;
+            if (sd.count >= MAX_SPINS) { notify('❌ Bugun uchun urinishlar tugadi! Ertaga keling 🌅', 'error'); return; }
+            if (st.coins < SPIN_COST) { notify(`❌ Yetarli coin yo'q! Kerak: ${SPIN_COST}🪙`, 'error'); return; }
+
+            // Deduct cost
+            st.coins -= SPIN_COST;
+            sd.count++;
+            saveSpinData(st.id, sd);
+
+            // Pick prize
+            const prize = pickPrize();
+
+            // Calculate target angle: pointer is at top (270deg = -π/2)
+            // We want prize slice to land under pointer
+            const sliceAngle = (2 * Math.PI) / TOTAL_SLOTS;
+            const prizeIdx = WHEEL_PRIZES.indexOf(prize);
+            const targetSlice = -prizeIdx * sliceAngle - sliceAngle / 2; // center of slice at top
+            const spins = 5 + Math.random() * 3; // 5-8 full rotations
+            const finalAngle = targetSlice - spins * 2 * Math.PI;
+
+            isSpinning = true;
+            document.getElementById('spin-btn').disabled = true;
+
+            // Animate
+            const startAngle = wheelAngle;
+            const totalDelta = finalAngle - startAngle;
+            const duration = 4000 + Math.random() * 1500;
+            const startTime = performance.now();
+
+            function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
+
+            function animate(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = easeOut(progress);
+                wheelAngle = startAngle + totalDelta * eased;
+                drawWheel(wheelAngle);
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    wheelAngle = finalAngle % (2 * Math.PI);
+                    isSpinning = false;
+                    onSpinEnd(prize);
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        function onSpinEnd(prize) {
+            const st = DATA.students[currentUser.id];
+
+            // Add prize coins
+            if (prize.coins > 0) {
+                st.coins += prize.coins;
+                DATA.coinHistory[st.id] = DATA.coinHistory[st.id] || [];
+                DATA.coinHistory[st.id].unshift({
+                    type: '+', amount: prize.coins,
+                    desc: `Baraban: 🎰 ${prize.coins} coin yutdi!`,
+                    date: new Date().toISOString().slice(5, 10)
+                });
+            } else {
+                DATA.coinHistory[st.id] = DATA.coinHistory[st.id] || [];
+                DATA.coinHistory[st.id].unshift({
+                    type: '-', amount: SPIN_COST,
+                    desc: `Baraban: 0 coin — baxt kulib baqmadi 😅`,
+                    date: new Date().toISOString().slice(5, 10)
+                });
+            }
+            saveData();
+
+            // Show prize popup
+            showPrizePopup(prize);
+        }
+
+        function showPrizePopup(prize) {
+            const isJackpot = prize.coins === 1000;
+            const isBig = prize.coins >= 100;
+
+            // Confetti for big wins
+            if (isBig) spawnConfetti();
+
+            const popup = document.createElement('div');
+            popup.className = 'prize-pop';
+            popup.id = 'prize-pop';
+            popup.innerHTML = `
+    <div class="prize-box" style="${isJackpot ? 'border-color:#f1c40f;box-shadow:0 0 60px rgba(241,196,15,.4);' : ''}">
+      <div class="prize-emoji">${isJackpot ? '🏆' : prize.coins >= 100 ? '🎉' : prize.coins >= 10 ? '😊' : prize.coins > 0 ? '🙂' : '😅'}</div>
+      <div class="prize-title" style="color:${isJackpot ? '#f1c40f' : 'var(--text)'};">
+        ${isJackpot ? 'JACKPOT!!!' : prize.coins >= 100 ? 'AJOYIB!' : prize.coins >= 10 ? 'YAXSHI!' : prize.coins > 0 ? 'NATIJA' : 'OMADSIZLIK'}
+      </div>
+      <div class="prize-amount" style="color:${prize.coins === 0 ? 'var(--text3)' : isJackpot ? '#f1c40f' : 'var(--orange)'};">
+        ${prize.coins > 0 ? '+' : ''}${prize.coins} 🪙
+      </div>
+      <div class="prize-sub">${isJackpot ? '🎊 Tabriklaymiz! Jackpot yutdingiz! Bu 0.1% ehtimol! 🎊' :
+                    prize.coins >= 100 ? 'Zo\'r natija! Coinlaringiz hisobga olindi.' :
+                        prize.coins > 0 ? 'Coinlaringiz hisobingizga qo\'shildi.' :
+                            'Keyingi safar omad kulib boqsin! 💪'
+                }</div>
+      <button class="btn btn-or btn-full" onclick="closePrizePopup()" style="font-size:15px;padding:14px;">
+        ${prize.coins > 0 ? '🎉 Qabul qilish' : '💪 Qayta urinish'}
+      </button>
+    </div>`;
+            document.body.appendChild(popup);
+            setTimeout(() => popup.classList.add('show'), 10);
+        }
+
+        function closePrizePopup() {
+            const pop = document.getElementById('prize-pop');
+            if (pop) { pop.classList.remove('show'); setTimeout(() => pop.remove(), 300); }
+            // Re-render baraban page with updated coins
+            renderStudentBaraban();
+            renderStudentDash();
+        }
+
+        function spawnConfetti() {
+            const colors = ['#ff6b1a', '#f1c40f', '#00d68f', '#3d9cff', '#9b59b6', '#ff4d6d'];
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.className = 'confetti-piece';
+                    el.style.cssText = `
+        left:${Math.random() * 100}vw;
+        top:${50 + Math.random() * 30}vh;
+        background:${colors[Math.floor(Math.random() * colors.length)]};
+        animation-delay:${Math.random() * 0.5}s;
+        transform:rotate(${Math.random() * 360}deg);
+      `;
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 2000);
+                }, i * 20);
+            }
+        }
+
+
+        function openModal(title, body) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').innerHTML = body;
+            document.getElementById('modal-bg').classList.add('open');
+        }
+        function closeModal() { document.getElementById('modal-bg').classList.remove('open'); }
+        document.getElementById('modal-bg').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+
+        // ============================================================
+        //  NOTIFICATION
+        // ============================================================
+        let notifTimer = null;
+        function notify(msg, type = 'success') {
+            const n = document.getElementById('notif');
+            n.textContent = msg;
+            n.className = `notif show ${type}`;
+            if (notifTimer) clearTimeout(notifTimer);
+            notifTimer = setTimeout(() => n.classList.remove('show'), 3500);
+        }
+    </script>
+</body>
+
+</html>
